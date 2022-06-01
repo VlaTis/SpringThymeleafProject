@@ -22,7 +22,4 @@ public class ProductCategory {
     @Column(length = 20)
     private String name;
 
-
-
-
 }

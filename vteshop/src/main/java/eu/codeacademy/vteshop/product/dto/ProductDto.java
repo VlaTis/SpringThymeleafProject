@@ -1,5 +1,6 @@
 package eu.codeacademy.vteshop.product.dto;
 
+import eu.codeacademy.vteshop.operationStation.dto.OperationStationDto;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,9 +16,9 @@ public class ProductDto {
     private Integer quantity;
     private BigDecimal price;
     private String description;
-    private String canBeMadeIn;
-    private String availabilityStatus;
-    private String productCategory;
+    private OperationStationDto operationStationDto;
+    private ProductStatusDto productStatusDto;
+    private ProductCategoryDto productCategory;
 
 
 }
