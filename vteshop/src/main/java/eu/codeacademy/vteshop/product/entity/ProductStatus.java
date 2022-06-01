@@ -22,7 +22,4 @@ public class ProductStatus {
     @Column(length = 20)
     private String name;
 
-    @OneToMany(mappedBy = "productStatus")
-    private Set<Product> products;
-
 }

@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.operationStation.entity.dto;
+package eu.codeacademy.vteshop.operationStation.dto;
 
 import lombok.Builder;
 import lombok.Data;

@@ -23,8 +23,5 @@ public class OperationStation {
     @Column(length = 50)
     private String name;
 
-    @OneToMany(mappedBy = "operationStation")
-    private Set<Product> products;
-
 
 }
