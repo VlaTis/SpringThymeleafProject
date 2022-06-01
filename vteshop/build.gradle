@@ -31,7 +31,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-devtools:${devToolsVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
     implementation "com.h2database:h2:${h2Version}"
     implementation "org.postgresql:postgresql:${postgresVersion}"
