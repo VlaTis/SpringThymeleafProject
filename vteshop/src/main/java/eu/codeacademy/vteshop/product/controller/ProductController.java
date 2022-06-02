@@ -1,6 +1,8 @@
 package eu.codeacademy.vteshop.product.controller;
 
+import eu.codeacademy.vteshop.operationStation.service.OperationStationService;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
+import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.product.service.ProductService;
 import eu.codeacademy.vteshop.product.service.ProductStatusService;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +17,15 @@ public class ProductController {
 
     private final ProductService productService;
     private final ProductStatusService productStatusService;
+    private final ProductCategoryService productCategoryService;
+    private final OperationStationService operationStationService;
 
     @GetMapping("/product")
     public String openCreateProductForm(Model model) {
         model.addAttribute("productDto", ProductDto.builder().build());
         model.addAttribute("productStatusList", productStatusService.getProductStatuses());
+        model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
+        model.addAttribute("operationStationsList", operationStationService.getOperationStations());
         return "products/product";
     }
 
