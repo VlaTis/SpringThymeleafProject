@@ -8,6 +8,8 @@ import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
 import eu.codeacademy.vteshop.product.repository.ProductRepository;
 import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +39,11 @@ public class ProductService {
                 .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationName()).get())
                 .productStatus(productStatusRepository.findProductStatusByName(productDto.getProductStatusName()).get())
                 .build());
+    }
+
+    public Page<ProductDto> getProductsPaginated(Pageable pageable){
+        return productRepository.findAll(pageable)
+                .map(productMapper::mapTo);
     }
 
     public List<ProductDto> getProducts() {

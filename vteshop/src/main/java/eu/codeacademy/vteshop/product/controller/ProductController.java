@@ -9,6 +9,9 @@ import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.product.service.ProductService;
 import eu.codeacademy.vteshop.product.service.ProductStatusService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +42,8 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public String getProducts(Model model) {
+    public String getProducts(
+            Model model, @PageableDefault(size = 8, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
         model.addAttribute("productList", productService.getProducts());
         return "products/products";
     }
