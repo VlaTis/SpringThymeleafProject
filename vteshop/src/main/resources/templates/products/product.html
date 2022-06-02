@@ -1,12 +1,35 @@
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en">
-<head th:replace="fragments/layout :: head(#{home.title})"></head>
+<head th:replace="fragments/layout :: head(#{product.create.title})"></head>
 
 
 
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<h1>blablabladddddd</h1>
+<h3 th:text="#{product.create.title}"></h3>
+<form method="post" th:object="${productDto}">
+	<label th:text="#{product.create.name}"></label>
+	<input class="form-control" type="text" th:placeholder="#{product.create.write.name}" th:field="*{name}"><br/>
+	<label th:text="#{product.create.quantity}"></label>
+	<input class="form-control" type="number" th:placeholder="#{product.create.write.quantity}" th:field="*{quantity}"><br/>
+	<label th:text="#{product.create.price}"></label>
+	<input class="form-control" type="text" th:placeholder="#{product.create.write.price}" th:field="*{price}"><br/>
+
+	<label th:text="#{product.select.productCategory}"></label>
+	<select class="form-select" aria-label="Default select example">
+		<option th:each="productStatus : ${productStatusList}" th:value="${productStatus}" th:text="${productStatus.name}"></option>
+	</select>
+
+	<label th:text="#{product.select.productStatus}"></label>
+	<select class="form-select" aria-label="Default select example">
+		<option th:each="productStatus : ${productStatusList}" th:value="${productStatus}" th:text="${productStatus.name}"></option>
+	</select>
+
+	<label th:text="#{product.create.name}"></label>
+	<input class="form-control" type="text" placeholder="Write Name" th:field="*{name}"><br/>
+	<label th:text="#{product.create.name}"></label>
+	<input class="form-control" type="text" placeholder="Write Name" th:field="*{name}"><br/>
+</form>
 
 
 
