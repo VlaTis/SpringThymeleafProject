@@ -16,9 +16,10 @@ public class ProductDto {
     private Integer quantity;
     private BigDecimal price;
     private String description;
-    private OperationStationDto operationStationDto;
-    private ProductStatusDto productStatusDto;
-    private ProductCategoryDto productCategory;
+    private String operationStationName;
+    private String productStatusName;
+    private String productCategoryName;
+
 
 
 }
