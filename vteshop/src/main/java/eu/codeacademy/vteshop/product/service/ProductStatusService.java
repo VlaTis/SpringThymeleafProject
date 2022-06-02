@@ -2,7 +2,7 @@ package eu.codeacademy.vteshop.product.service;
 
 import eu.codeacademy.vteshop.product.dto.ProductStatusDto;
 import eu.codeacademy.vteshop.product.entity.ProductStatus;
-import eu.codeacademy.vteshop.product.entity.mapper.ProductStatusMapper;
+import eu.codeacademy.vteshop.product.mapper.ProductStatusMapper;
 import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

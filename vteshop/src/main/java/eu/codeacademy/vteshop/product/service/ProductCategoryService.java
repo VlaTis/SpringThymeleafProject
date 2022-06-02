@@ -2,7 +2,7 @@ package eu.codeacademy.vteshop.product.service;
 
 import eu.codeacademy.vteshop.product.dto.ProductCategoryDto;
 import eu.codeacademy.vteshop.product.entity.ProductCategory;
-import eu.codeacademy.vteshop.product.entity.mapper.ProductCategoryMapper;
+import eu.codeacademy.vteshop.product.mapper.ProductCategoryMapper;
 import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,9 @@ public class ProductCategoryService {
                 .build());
     }
 
+    public ProductCategoryDto getProductCategoryByName(String categoryName){
+        return productCategoryMapper.mapTo(productCategoryRepository.findProductCategoryByName(categoryName).get());
+    }
     public List<ProductCategoryDto> getProductCategories(){
         return productCategoryRepository.findAll().stream()
                 .map(productCategoryMapper::mapTo)

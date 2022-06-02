@@ -3,7 +3,7 @@ package eu.codeacademy.vteshop.product.service;
 import eu.codeacademy.vteshop.operationStation.repository.OperationStationRepository;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.entity.Product;
-import eu.codeacademy.vteshop.product.entity.mapper.ProductMapper;
+import eu.codeacademy.vteshop.product.mapper.ProductMapper;
 import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
 import eu.codeacademy.vteshop.product.repository.ProductRepository;
 import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
@@ -26,19 +26,20 @@ public class ProductService {
     private final OperationStationRepository operationStationRepository;
 
     @Transactional
-    public void addProduct(ProductDto productDto){
+    public void addProduct(ProductDto productDto) {
         productRepository.save(Product.builder()
                 .productId(UUID.randomUUID())
                 .name(productDto.getName())
+                .price(productDto.getPrice())
                 .quantityInStock(productDto.getQuantity())
                 .description(productDto.getDescription())
-                .productCategory(productCategoryRepository.findProductCategoryByName(productDto.getProductCategory().getName()).get())
-                .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationDto().getName()).get())
-                .productStatus(productStatusRepository.findProductStatusByName(productDto.getName()).get())
+                .productCategory(productCategoryRepository.findProductCategoryByName(productDto.getProductCategoryName()).get())
+                .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationName()).get())
+                .productStatus(productStatusRepository.findProductStatusByName(productDto.getProductStatusName()).get())
                 .build());
     }
 
-    public List<ProductDto> getProducts(){
+    public List<ProductDto> getProducts() {
         return productRepository.findAll().stream()
                 .map(productMapper::mapTo)
                 .collect(Collectors.toList());
