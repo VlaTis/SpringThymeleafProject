@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.product.entity.mapper;
+package eu.codeacademy.vteshop.product.mapper;
 
 import eu.codeacademy.vteshop.product.dto.ProductStatusDto;
 import eu.codeacademy.vteshop.product.entity.ProductStatus;
