@@ -1,7 +1,102 @@
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head th:replace="fragments/layout :: head(#{home.title})"></head>
+
+<div th:replace="fragments/layout :: navbar"></div>
+
+<h3 th:text="#{products.list.title}"></h3>
+
 <body>
+<div th:if="${not productListPaginated.hasContent()}" th:text="#{products.list.emptyMessage}"></div>
+
+<div th:with="urlRootPath=${#httpServletRequest.requestURI}">
+
+	<div th:if="${productListPaginated.hasContent()}">
+<!--		-->
+		<span th:text="#{products.list.total(${productListPaginated.totalElements})}"></span>
+
+		<table class="table table-dark table-hover">
+			<thead>
+			<tr>
+				<th scope="col" style="width: auto"><a
+						th:replace="fragments/layout :: sortColumn(data=${productListPaginated}, name='name', path=@{*{urlRootPath}}, sortUp='fa-arrow-up-z-a', sortDown='fa-arrow-down-a-z', fieldName=#{products.name})"></a>
+				</th>
+				<th scope="col" style="width: 15%"><a
+						th:replace="fragments/layout :: sortColumn(data=${productListPaginated}, name='quantityInStock', path=@{*{urlRootPath}}, sortUp='fa-arrow-up-9-1', sortDown='fa-arrow-down-1-9', fieldName=#{products.quantity})"></a>
+				</th>
+				<th scope="col" style="width: 15%"><a
+						th:replace="fragments/layout :: sortColumn(data=${productListPaginated}, name='price', path=@{*{urlRootPath}}, sortUp='fa-arrow-up-9-1', sortDown='fa-arrow-down-1-9', fieldName=#{products.price} + ' ' + #{currency})"></a>
+				</th>
+				<th scope="col" style="width: 15%"></th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr class="testuojam" th:each="product: ${productListPaginated}"
+			    th:classappend="${product.productCategoryName == 'Bearings'} ? 'table-info'"
+
+			>
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.quantity}"></td>
+				<td th:text="${product.price}"></td>
+				<td>
+					<div class="d-flex justify-content-between">
+
+						<form method="POST">
+							<button class="btn btn-primary">
+								<i class="fa-solid fa-cart-arrow-down"></i>
+							</button>
+						</form>
+						<div>
+							<form method="POST">
+								<input type="hidden" name="productId">
+								<button class="btn btn-danger" th:text="#{products.delete}">
+								</button>
+							</form>
+						</div>
+
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<nav class="d-flex justify-content-center">
+			<ul class="pagination"
+			    th:with="
+                orderParam=${productListPaginated.sort.iterator().hasNext() ? productListPaginated.sort.iterator().next : null},
+                sortParam=${orderParam ne null ? orderParam.property + ',' + orderParam.direction + ',ignorecase' : null}">
+				<li class="page-item"
+				    th:classappend="${!productListPaginated.hasPrevious()} ? 'disabled'"
+				>
+					<a class="page-link"
+					   th:href="@{*{urlRootPath}(page=${productListPaginated.number} - 1,sort=${sortParam})}"
+					   th:text="#{products.previous}"
+					></a>
+				</li>
+				<li class="page-item"
+				    th:each="pageNumber: ${#numbers.sequence(0, productListPaginated.totalPages - 1)}"
+				    th:classappend="${pageNumber == productListPaginated.number ? 'active' : ''}"
+				>
+					<a class="page-link"
+					   th:href="@{*{urlRootPath}(page=${pageNumber},sort=${sortParam})}"
+					   th:text="${pageNumber + 1}"></a>
+				</li>
+				<li class="page-item"
+				    th:classappend="${!productListPaginated.hasNext()} ? 'disabled'"
+				>
+					<a class="page-link"
+					   th:href="@{*{urlRootPath}(page=${productListPaginated.number} + 1,sort=${sortParam})}"
+					   th:text="#{products.next}"
+					></a>
+				</li>
+			</ul>
+		</nav>
+
+
+	</div>
+</div>
+
+
 
 </body>
 </html>

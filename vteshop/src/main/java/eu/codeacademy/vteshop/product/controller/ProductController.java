@@ -1,10 +1,7 @@
 package eu.codeacademy.vteshop.product.controller;
 
-import eu.codeacademy.vteshop.operationStation.dto.OperationStationDto;
 import eu.codeacademy.vteshop.operationStation.service.OperationStationService;
-import eu.codeacademy.vteshop.product.dto.ProductCategoryDto;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
-import eu.codeacademy.vteshop.product.dto.ProductStatusDto;
 import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.product.service.ProductService;
 import eu.codeacademy.vteshop.product.service.ProductStatusService;
@@ -36,15 +33,15 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public String createProduct(ProductDto productDto){
+    public String createProduct(ProductDto productDto) {
         productService.addProduct(productDto);
-        return "redirect:" + "products/product" ;
+        return "redirect:" + "products/product";
     }
 
     @GetMapping("/products")
     public String getProducts(
             Model model, @PageableDefault(size = 8, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
-        model.addAttribute("productList", productService.getProducts());
+        model.addAttribute("productListPaginated", productService.getProductsPaginated(pageable));
         return "products/products";
     }
 
