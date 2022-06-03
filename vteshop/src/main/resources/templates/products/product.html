@@ -18,20 +18,33 @@
 	<label th:text="#{product.create.price}"></label>
 	<input class="form-control" type="text" th:placeholder="#{product.create.write.price}" th:field="*{price}"><br/>
 
+
+
 	<label th:text="#{product.select.productCategory}"></label>
-	<select class="form-select" aria-label="Default select example" th:field="*{productCategoryName}">
+	<div th:field="*{productCategoryDto}">
+	<select class="form-select" aria-label="Default select example" th:object="${categoryDto}" th:field="*{name}">
 		<option th:each="productCategory : ${productCategoryList}" th:value="${productCategory.name}" th:text="${productCategory.name}"></option>
 	</select>
+	</div>
+
+
 
 	<label th:text="#{product.select.operationStation}"></label>
-	<select class="form-select" aria-label="Default select example" th:field="*{operationStationName}">
-		<option th:each="operationStation : ${operationStationsList}" th:value="${operationStation.name}" th:text="${operationStation.name}" ></option>
+
+	<select class="form-select" aria-label="Default select example" th:field="*{operationStationDto}"  >
+		<option th:object="${operationStationDto}"  th:field="*{name}" th:each="operationStation : ${operationStationsList}" th:value="${operationStation.name}" th:text="${operationStation.name}" ></option>
 	</select>
 
+
+
 	<label th:text="#{product.select.productStatus}"></label>
-	<select class="form-select" aria-label="Default select example" th:field="*{productStatusName}" >
+	<div th:field="*{productStatusDto}">
+	<select class="form-select" aria-label="Default select example" th:object="${productStatusDto}" th:field="*{name}" >
 		<option th:each="productStatus : ${productStatusList}" th:value="${productStatus.name}" th:text="${productStatus.name}"></option>
 	</select>
+	</div>
+
+
 
 	<label th:text="#{product.create.description}"></label>
 	<textarea class="form-control" type="text" th:placeholder="#{product.create.write.description}" th:field="*{description}"> </textarea><br/>

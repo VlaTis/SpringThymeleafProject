@@ -35,9 +35,9 @@ public class ProductService {
                 .price(productDto.getPrice())
                 .quantityInStock(productDto.getQuantity())
                 .description(productDto.getDescription())
-                .productCategory(productCategoryRepository.findProductCategoryByName(productDto.getProductCategoryName()).get())
-                .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationName()).get())
-                .productStatus(productStatusRepository.findProductStatusByName(productDto.getProductStatusName()).get())
+                .productCategory(productCategoryRepository.findProductCategoryByName(productDto.getProductCategoryDto().getName()).get())
+                .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationDto().getName()).get())
+                .productStatus(productStatusRepository.findProductStatusByName(productDto.getProductStatusDto().getName()).get())
                 .build());
     }
 
