@@ -35,7 +35,7 @@ public class ProductController {
     @PostMapping("/product")
     public String createProduct(ProductDto productDto) {
         productService.addProduct(productDto);
-        return "redirect:" + "products/product";
+        return "redirect:" + "/product";
     }
 
     @GetMapping("/products")
