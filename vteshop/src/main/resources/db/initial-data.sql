@@ -4,9 +4,13 @@ VALUES ('Shafts'),
        ('Couplings');
 
 
-INSERT INTO operation_station(name)
-VALUES ('Shaft and Coupling Machining'),
-       ('Bearings production');
+INSERT INTO operation_station_status(name)
+VALUES ('Busy'),
+       ('Idle');
+
+INSERT INTO operation_station(name, operation_station_status)
+VALUES ('Shaft and Coupling Machining', 2),
+       ('Bearings production', 2);
 
 
 INSERT INTO product_status(name)

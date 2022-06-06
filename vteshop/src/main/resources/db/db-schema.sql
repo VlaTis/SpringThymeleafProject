@@ -1,10 +1,23 @@
+DROP TABLE IF EXISTS operation_station_status;
+CREATE TABLE operation_station_status
+(
+    id         BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name       VARCHAR(50) NOT NULL,
+    CONSTRAINT operation_station_status_key UNIQUE (name)
+);
+
+
 DROP TABLE IF EXISTS operation_station;
 CREATE TABLE operation_station
 (
     id         BIGINT PRIMARY KEY AUTO_INCREMENT,
     name       VARCHAR(50) NOT NULL,
-    CONSTRAINT operation_station_key UNIQUE (name)
+    operation_station_status BIGINT references operation_station_status(id),
+    CONSTRAINT operation_station_key UNIQUE (name),
+    FOREIGN KEY (operation_station_status) REFERENCES operation_station_status(id)
 );
+
+
 
 DROP TABLE IF EXISTS product_category;
 CREATE TABLE product_category
@@ -48,6 +61,7 @@ CREATE TABLE production_order_status
     name       VARCHAR(50) NOT NULL,
     CONSTRAINT production_order_status_key UNIQUE (name)
 );
+
 
 DROP TABLE IF EXISTS production_order;
 CREATE TABLE production_order
