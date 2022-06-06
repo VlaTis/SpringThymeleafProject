@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ProductStatusValidator.class)
+@Constraint(validatedBy = ProductCategoryValidator.class)
 public @interface ProductCategoryValid {
     String message() default "{validate.productCategory.notChosen}";
 
