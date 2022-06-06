@@ -17,6 +17,13 @@ INSERT INTO product_status(name)
 VALUES ('Available'),
        ('Not available');
 
+INSERT INTO production_order_status(name)
+VALUES ('Finished'),
+       ('In Progress'),
+       ('Ready for Production'),
+       ('Canceled');
+
+
 INSERT INTO product (product_id, name, quantity_in_stock, price, description, operation_station, product_status,
                      product_category)
 VALUES ('e4dbc123-a7c2-4bee-a519-e1b9ba991341', 'Shaft1', 200, 100, 'Standard copper shaft', 1, 1, 1),
@@ -34,7 +41,12 @@ VALUES ('e4dbc123-a7c2-4bee-a519-e1b9ba991341', 'Shaft1', 200, 100, 'Standard co
        ('e4dbc123-a7c2-4bee-a519-e1b9ba991349', 'Coupling4', 16, 100, 'Standard coupling Extra Large', 1, 1, 3);
 
 
-
+INSERT INTO production_order (name, quantity, production_order_status, product_id)
+VALUES ('P-Order 1', 100, 1, 1),
+       ('P-Order 2', 50, 3, 2),
+       ('P-Order 3', 100, 3, 3),
+       ('P-Order 4', 100, 3, 6),
+       ('P-Order 5', 100, 1, 5);
 
 
 
