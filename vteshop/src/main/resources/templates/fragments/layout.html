@@ -38,17 +38,26 @@
 				<a class="nav-link" aria-current="page" th:href="@{/public/cart}">Cart</a>
 
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav.operations.dropdown}">
-						Link
+					<a class="nav-link dropdown-toggle" href="#"
+					   role="button" data-bs-toggle="dropdown" aria-expanded="false"
+					   th:text="#{nav.operations.dropdown}">
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" th:object="${operationStationList}">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
+					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+						<li ><a class="dropdown-item" href="#" th:text="#{nav.operations.dropdown.shaftCoupling}" ></a></li>
+						<li ><a class="dropdown-item" href="#" th:text="#{nav.operations.dropdown.bearings}" ></a></li>
 					</ul>
 				</li>
 
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
+					   role="button" data-bs-toggle="dropdown" aria-expanded="false"
+					   th:text="#{nav.orders.dropdown}">
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+						<li ><a class="dropdown-item" href="#" th:text="#{nav.orders.dropdown.productionOrders}" ></a></li>
+						<li ><a class="dropdown-item" href="#" th:text="#{nav.orders.dropdown.saleOrders}" ></a></li>
+					</ul>
+				</li>
 
 
 <!--			</li>-->
