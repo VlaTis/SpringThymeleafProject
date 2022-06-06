@@ -12,7 +12,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -44,6 +48,29 @@ public class ProductController {
         model.addAttribute("productListPaginated", productService.getProductsPaginated(pageable));
         return "products/products";
     }
+
+    @GetMapping("/products/{productId}/update")
+    public String getUpdateProduct(Model model, @PathVariable("productId") UUID id) {
+        model.addAttribute("productDto", productService.getProductByUUID(id));
+
+        return "products/products";
+    }
+
+    @PostMapping("/products/{productId}/update")
+    public String getUpdateProduct(ProductDto productDto) {
+        productService.updateProduct(productDto);
+
+        return "redirect:" + "/products";
+    }
+//
+    @PostMapping("/products/delete")
+    public String deleteProduct(@RequestParam UUID productId) {
+        productService.deleteProduct(productId);
+
+        return "redirect:" + "/products";
+    }
+
+
 
 
 }

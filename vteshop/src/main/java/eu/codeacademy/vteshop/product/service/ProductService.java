@@ -1,8 +1,12 @@
 package eu.codeacademy.vteshop.product.service;
 
+import eu.codeacademy.vteshop.operationStation.entity.OperationStation;
 import eu.codeacademy.vteshop.operationStation.repository.OperationStationRepository;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.entity.Product;
+import eu.codeacademy.vteshop.product.entity.ProductCategory;
+import eu.codeacademy.vteshop.product.entity.ProductStatus;
+import eu.codeacademy.vteshop.product.exeption.ProductNotFoundException;
 import eu.codeacademy.vteshop.product.mapper.ProductMapper;
 import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
 import eu.codeacademy.vteshop.product.repository.ProductRepository;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -52,4 +57,38 @@ public class ProductService {
                 .collect(Collectors.toList());
 
     }
+
+    public ProductDto getProductByUUID(UUID id) {
+        return productRepository.findByProductId(id)
+                .map(productMapper::mapTo)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+
+    @Transactional
+    public void updateProduct(ProductDto productDto) {
+        Optional<Product> productOptional = productRepository.findByProductId(productDto.getProductId());
+
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get().toBuilder()
+                    .name(productDto.getName())
+                    .quantityInStock(productDto.getQuantity())
+                    .price(productDto.getPrice())
+                    .description(productDto.getDescription())
+                    .productCategory(ProductCategory.builder().name(productDto.getProductCategoryName()).build())
+                    .productStatus(ProductStatus.builder().name(productDto.getProductStatusName()).build())
+                    .operationStation(OperationStation.builder().name(productDto.getOperationStationName()).build())
+                    .build();
+
+            productRepository.save(product);
+        }
+    }
+
+
+    @Transactional
+    public void deleteProduct(UUID uuid) {
+        Optional<Product> product = productRepository.findByProductId(uuid);
+        product.ifPresent(value -> productRepository.deleteById(value.getId()));
+    }
+
 }
