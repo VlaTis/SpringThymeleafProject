@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -84,7 +83,7 @@ public class ProductController {
     public String deleteProduct(@RequestParam UUID productId) {
         productService.deleteProduct(productId);
 
-        return "redirect:" + "products/products";
+        return "redirect:" + "/products";
     }
 
 

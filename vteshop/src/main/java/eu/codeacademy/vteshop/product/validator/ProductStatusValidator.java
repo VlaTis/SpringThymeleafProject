@@ -2,6 +2,7 @@ package eu.codeacademy.vteshop.product.validator;
 
 
 import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
+import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.ConstraintValidator;
@@ -11,7 +12,7 @@ import javax.validation.ConstraintValidatorContext;
 @RequiredArgsConstructor
 public class ProductStatusValidator implements ConstraintValidator<ProductStatusValid, String> {
 
-    private final ProductCategoryRepository productCategoryRepository;
+    private final ProductStatusRepository productStatusRepository;
 
     @Override
     public void initialize(ProductStatusValid productStatusName) {
@@ -22,6 +23,6 @@ public class ProductStatusValidator implements ConstraintValidator<ProductStatus
 
 
 
-        return productStatusName != null && productCategoryRepository.findProductCategoryByName(productStatusName).isPresent();
+        return productStatusName != null && productStatusRepository.findProductStatusByName(productStatusName).isPresent();
     }
 }
