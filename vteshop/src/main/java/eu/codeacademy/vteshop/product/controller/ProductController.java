@@ -49,16 +49,20 @@ public class ProductController {
         return "products/products";
     }
 
-    @GetMapping("/products/{productId}/update")
+    @GetMapping("/product/{productId}/update")
     public String getUpdateProduct(Model model, @PathVariable("productId") UUID id) {
         model.addAttribute("productDto", productService.getProductByUUID(id));
+        model.addAttribute("productStatusList", productStatusService.getProductStatuses());
+        model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
+        model.addAttribute("operationStationsList", operationStationService.getOperationStations());
 
-        return "products/products";
+        return "products/product";
     }
 
-    @PostMapping("/products/{productId}/update")
+    @PostMapping("/product/{productId}/update")
     public String getUpdateProduct(ProductDto productDto) {
         productService.updateProduct(productDto);
+
 
         return "redirect:" + "/products";
     }
@@ -67,7 +71,7 @@ public class ProductController {
     public String deleteProduct(@RequestParam UUID productId) {
         productService.deleteProduct(productId);
 
-        return "redirect:" + "/products";
+        return "redirect:" + "products/products";
     }
 
 

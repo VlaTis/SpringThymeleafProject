@@ -75,9 +75,9 @@ public class ProductService {
                     .quantityInStock(productDto.getQuantity())
                     .price(productDto.getPrice())
                     .description(productDto.getDescription())
-                    .productCategory(ProductCategory.builder().name(productDto.getProductCategoryName()).build())
-                    .productStatus(ProductStatus.builder().name(productDto.getProductStatusName()).build())
-                    .operationStation(OperationStation.builder().name(productDto.getOperationStationName()).build())
+                    .productCategory(productCategoryRepository.findProductCategoryByName(productDto.getProductCategoryName()).get())
+                    .productStatus(productStatusRepository.findProductStatusByName(productDto.getProductStatusName()).get())
+                    .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationName()).get())
                     .build();
 
             productRepository.save(product);

@@ -5,7 +5,7 @@ import eu.codeacademy.vteshop.product.entity.Product;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Entity
 @Getter
