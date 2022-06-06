@@ -1,6 +1,7 @@
 package eu.codeacademy.vteshop.product.controller;
 
 import eu.codeacademy.vteshop.operationStation.service.OperationStationService;
+import eu.codeacademy.vteshop.product.dto.ProductCategoryDto;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.product.service.ProductService;
@@ -11,11 +12,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -37,8 +42,16 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public String createProduct(ProductDto productDto) {
+    public String createProduct(Model model, @Valid ProductDto productDto, BindingResult errors,
+                                RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()){
+            model.addAttribute("productStatusList", productStatusService.getProductStatuses());
+            model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
+            model.addAttribute("operationStationsList", operationStationService.getOperationStations());
+            return "products/product";
+        }
         productService.addProduct(productDto);
+        redirectAttributes.addAttribute("message", "product.create.success");
         return "redirect:" + "/product";
     }
 

@@ -2,24 +2,24 @@ package eu.codeacademy.vteshop.product.validator;
 
 import eu.codeacademy.vteshop.operationStation.repository.OperationStationRepository;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
-import lombok.Getter;
+
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @RequiredArgsConstructor
-@Getter
-public class OperationStationValidator implements ConstraintValidator<OperationStationValid, ProductDto> {
+public class OperationStationValidator implements ConstraintValidator<OperationStationValid, String> {
 
-    OperationStationRepository operationStationRepository;
-
+    private final OperationStationRepository operationStationRepository;
 
     @Override
-    public boolean isValid(ProductDto productDto, ConstraintValidatorContext context) {
+    public void initialize(OperationStationValid operationStationName) {
+    }
 
-        String currentOperationStationName = productDto.getOperationStationName();
+    @Override
+    public boolean isValid(String operationStationName, ConstraintValidatorContext context) {
 
-        return operationStationRepository.findOperationStationByName(currentOperationStationName).isPresent();
+        return operationStationName !=null && operationStationRepository.findOperationStationByName(operationStationName).isPresent();
     }
 }

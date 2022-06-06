@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-@OperationStationValid
+
 public class ProductDto {
 
     private UUID productId;
@@ -36,7 +36,9 @@ public class ProductDto {
     @NotBlank
     private String description;
 
+    @OperationStationValid
     private String operationStationName;
+
     private String productStatusName;
     private String productCategoryName;
 
