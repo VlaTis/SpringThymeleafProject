@@ -20,7 +20,8 @@
 
 
 <div class="col"  th:each="product: ${productListPaginated}">
-	<div class="card" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 18rem;">
+	<div class="card"  style="width: 18rem;">
+		<div type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 		<img th:src="@{/images/hederio_img.png}" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title" th:text="${product.name}">Card title</h5>
@@ -31,16 +32,14 @@
 			<li class="list-group-item" th:text="${product.quantity}"></li>
 			<li class="list-group-item"th:text="${product.productStatusName}"></li>
 		</ul>
+		</div>
 		<div class="card-body">
-			<div>
-
+			<div class="mb-1">
 					<input type="hidden" name="productId" th:value="${product.productId}">
 					<a  th:href="@{/product/{productId}/update(productId=${product.productId})}">
 						<button class="btn btn-warning" th:text="#{products.edit}">
 					</button></a>
 				</div>
-
-			</div>
 
 			<div>
 				<form method="POST" th:action="@{/products/delete}">
@@ -49,6 +48,7 @@
 					</button>
 				</form>
 			</div>
+
 			<div th:if="${product.productStatusName == 'Available'}">
 			<form method="POST">
 				<button class="btn btn-primary">

@@ -6,7 +6,7 @@
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
 <h3 th:text="#{product.create.title}"></h3>
-<form method="post" th:object="${productDto}" th:action="@{/product}">
+<form method="post" th:object="${productDto}">
 
 	<div class="mb-3">
 		<ul class="error-block" th:if="${#fields.hasErrors()}">
