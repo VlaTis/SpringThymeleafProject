@@ -1,7 +1,6 @@
 package eu.codeacademy.vteshop.product.controller;
 
-import eu.codeacademy.vteshop.operationStation.service.OperationStationService;
-import eu.codeacademy.vteshop.product.dto.ProductCategoryDto;
+import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.product.service.ProductService;

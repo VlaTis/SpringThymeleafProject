@@ -1,11 +1,8 @@
 package eu.codeacademy.vteshop.product.service;
 
-import eu.codeacademy.vteshop.operationStation.entity.OperationStation;
-import eu.codeacademy.vteshop.operationStation.repository.OperationStationRepository;
+import eu.codeacademy.vteshop.operation.operationStation.repository.OperationStationRepository;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.entity.Product;
-import eu.codeacademy.vteshop.product.entity.ProductCategory;
-import eu.codeacademy.vteshop.product.entity.ProductStatus;
 import eu.codeacademy.vteshop.product.exeption.ProductNotFoundException;
 import eu.codeacademy.vteshop.product.mapper.ProductMapper;
 import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;

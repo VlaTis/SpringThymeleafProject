@@ -1,20 +1,18 @@
-package eu.codeacademy.vteshop.operationStation.entity;
+package eu.codeacademy.vteshop.operation.operationStation.entity;
 
-
-import eu.codeacademy.vteshop.product.entity.Product;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-
-public class OperationStation {
+public class OperationStationStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +20,4 @@ public class OperationStation {
 
     @Column(length = 50)
     private String name;
-
-
 }

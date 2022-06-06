@@ -1,7 +1,7 @@
 package eu.codeacademy.vteshop.fragments;
 
 
-import eu.codeacademy.vteshop.operationStation.service.OperationStationService;
+import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

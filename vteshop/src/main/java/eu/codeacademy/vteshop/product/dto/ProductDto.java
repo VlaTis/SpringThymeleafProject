@@ -1,6 +1,5 @@
 package eu.codeacademy.vteshop.product.dto;
 
-import eu.codeacademy.vteshop.operationStation.dto.OperationStationDto;
 import eu.codeacademy.vteshop.product.validator.OperationStationValid;
 import eu.codeacademy.vteshop.product.validator.ProductCategoryValid;
 import eu.codeacademy.vteshop.product.validator.ProductStatusValid;

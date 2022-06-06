@@ -1,6 +1,6 @@
-package eu.codeacademy.vteshop.operationStation.repository;
+package eu.codeacademy.vteshop.operation.operationStation.repository;
 
-import eu.codeacademy.vteshop.operationStation.entity.OperationStation;
+import eu.codeacademy.vteshop.operation.operationStation.entity.OperationStation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
