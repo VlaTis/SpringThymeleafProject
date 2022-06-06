@@ -25,6 +25,8 @@ public class ProductionOrderDto {
     @NotNull
     private UUID productUUID;
 
+    private String productName;
+
     @NotNull
     private String order_status;
 

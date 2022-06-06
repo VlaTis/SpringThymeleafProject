@@ -12,6 +12,7 @@ public class ProductionOrderMapper {
                 .name(productionOrder.getName())
                 .quantity(productionOrder.getQuantity())
                 .productUUID(productionOrder.getProduct().getProductId())
+                .productName(productionOrder.getProduct().getName())
                 .order_status(productionOrder.getProductionOrderStatus().getName())
                 .build();
     }

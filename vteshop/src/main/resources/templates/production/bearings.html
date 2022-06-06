@@ -5,6 +5,67 @@
 
 <div th:replace="fragments/layout :: navbar"></div>
 <h3 th:text="#{operations.bearings.title}"></h3>
+<div style="display: flex">
+	<div class="spinner-border" role="status" th:classappend="${operationStation.getStatus_name() == 'Busy' ? 'text-success': 'text-warning' }"></div>
+	<div th:if="${currentOrder != null}">
+		<div th:text="#{operations.current.order(${currentOrder.get(0).name})}"></div>
+		<div>
+			<form method="POST" th:action="@{/bearbearings_centre/finish}">
+				<button class="btn btn-warning" th:text="#{operations.finish}">
+				</button>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+
+
+<h3 th:text="#{operations.station.status}"></h3>
+
+<table class="table">
+	<thead>
+	<tr>
+		<th scope="col" style="width: auto" th:text="#{operations.orders.name}"></th>
+		<th scope="col" style="width: 15%" th:text="#{operations.orders.product}"></th>
+		<th scope="col" style="width: 15%" th:text="#{operations.orders.quantity}"></th>
+
+	</tr>
+	</thead>
+
+	<tbody>
+	<tr th:each="order: ${productionOrders}">
+
+		<td th:text="${order.name}">Mark</td>
+		<td th:text="${order.getProductName()}"></td>
+		<td th:text="${order.quantity}"></td>
+		<td>
+			<div>
+				<div th:if="${operationStation.getStatus_name() != 'Busy'}">
+					<form method="POST" th:action="@{/bearbearings_centre/start}">
+						<button class="btn btn-success" th:text="#{operations.start}">
+						</button>
+					</form>
+				</div>
+
+
+
+
+
+
+			</div>
+
+
+
+		</td>
+	</tr>
+
+	</tbody>
+</table>
+
+
+
+
 
 </body>
 </html>
