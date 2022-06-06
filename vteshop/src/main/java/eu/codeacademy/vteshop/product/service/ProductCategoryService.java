@@ -28,6 +28,7 @@ public class ProductCategoryService {
     public ProductCategoryDto getProductCategoryByName(String categoryName){
         return productCategoryMapper.mapTo(productCategoryRepository.findProductCategoryByName(categoryName).get());
     }
+
     public List<ProductCategoryDto> getProductCategories(){
         return productCategoryRepository.findAll().stream()
                 .map(productCategoryMapper::mapTo)
