@@ -2,6 +2,7 @@ package eu.codeacademy.vteshop.product.dto;
 
 import eu.codeacademy.vteshop.operationStation.dto.OperationStationDto;
 import eu.codeacademy.vteshop.product.validator.OperationStationValid;
+import eu.codeacademy.vteshop.product.validator.ProductCategoryValid;
 import eu.codeacademy.vteshop.product.validator.ProductStatusValid;
 import lombok.Builder;
 import lombok.Data;
@@ -42,8 +43,9 @@ public class ProductDto {
 
     @ProductStatusValid
     private String productStatusName;
-    private String productCategoryName;
 
+    @ProductCategoryValid
+    private String productCategoryName;
 
 
 }
