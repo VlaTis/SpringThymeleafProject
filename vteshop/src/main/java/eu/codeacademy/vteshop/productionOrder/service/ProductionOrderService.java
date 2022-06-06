@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -60,11 +61,20 @@ public class ProductionOrderService {
 
     public List<ProductionOrderDto> getFilteredProductionOrders(OperationStationDto operationStationDto, ProductionOrderStatusDto productionOrderStatusDto){
         return productionOrderRepository.findAll().stream()
-                .filter(po -> po.getProductionOrderStatus().getName() == productionOrderStatusDto.getName()
-                        && po.getProduct().getOperationStation().getName() == operationStationDto.getName())
+                .filter(po -> Objects.equals(po.getProductionOrderStatus().getName(), productionOrderStatusDto.getName())
+                        && Objects.equals(po.getProduct().getOperationStation().getName(), operationStationDto.getName()))
                 .map(productionOrderMapper::mapTo)
                 .collect(Collectors.toList());
 
+
+
+    }
+
+    public List<ProductionOrderDto> getFilteredOrdersByStatus(ProductionOrderStatusDto productionOrderStatusDto){
+        return productionOrderRepository.findAll().stream()
+                .filter(po -> Objects.equals(po.getProductionOrderStatus().getName(), productionOrderStatusDto.getName()))
+                .map(productionOrderMapper::mapTo)
+                .collect(Collectors.toList());
     }
 
 
