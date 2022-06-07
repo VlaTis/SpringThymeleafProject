@@ -9,6 +9,7 @@ public class OperationStationMapper {
     public OperationStationDto mapTo(OperationStation operationStation){
         return OperationStationDto.builder()
                 .name(operationStation.getName())
+                .status_name(operationStation.getOperationStationStatus().getName())
                 .build();
     }
 }

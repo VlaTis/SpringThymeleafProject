@@ -1,7 +1,7 @@
 package eu.codeacademy.vteshop.operation.operationStation.entity;
 
 
-import eu.codeacademy.vteshop.product.entity.Product;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,11 +9,9 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class OperationStation {
 
     @Id
