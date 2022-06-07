@@ -6,9 +6,9 @@
 <div th:replace="fragments/layout :: navbar"></div>
 <h3 th:text="#{operations.bearings.title}"></h3>
 <div style="display: flex">
-	<div class="spinner-border" role="status" th:classappend="${operationStation.getStatus_name() == 'Busy' ? 'text-success': 'text-warning' }"></div>
-	<div th:if="${currentOrder != null}">
-		<div th:text="#{operations.current.order(${currentOrder.get(0).name})}"></div>
+	<div class="spinner-border" role="status" th:classappend="${operationStation.status_name == 'Busy'} ? 'text-success' : 'text-warning'"></div>
+	<div th:if="${currentOrder.size() > 0}">
+		<div th:text="${currentOrder.get(0).name} + ' ' + #{operations.current.order}"></div>
 		<div>
 			<form method="POST" th:action="@{/bearbearings_centre/finish}">
 				<button class="btn btn-warning" th:text="#{operations.finish}">
@@ -42,10 +42,13 @@
 		<td>
 			<div>
 				<div th:if="${operationStation.getStatus_name() != 'Busy'}">
-					<form method="POST" th:action="@{/bearbearings_centre/start}">
+
+					<form method="POST" th:action="@{/bearings_centre/start}">
+						<input type="hidden" name="productionOrderDtoName" th:value="${order.name}">
 						<button class="btn btn-success" th:text="#{operations.start}">
 						</button>
 					</form>
+
 				</div>
 
 
