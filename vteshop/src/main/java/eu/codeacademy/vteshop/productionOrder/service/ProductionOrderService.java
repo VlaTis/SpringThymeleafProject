@@ -39,27 +39,36 @@ public class ProductionOrderService {
     }
 
     @Transactional
-    public void updateProductionOrder(ProductionOrderDto productionOrderDto){
-        Optional<ProductionOrder> productionOrderOptional = productionOrderRepository.findProductionOrderByName(productionOrderDto.getName());
+    public void updateProductionOrderStatus(String productionOrderDtoName, ProductionOrderStatusDto productionOrderStatusDto) {
+        Optional<ProductionOrder> productionOrderOptional = productionOrderRepository.findProductionOrderByName(productionOrderDtoName);
 
-        if(productionOrderOptional.isPresent()){
+
+        if (productionOrderOptional.isPresent()) {
+            ProductionOrderDto productionOrderDto = findProductionOrderDtoByName(productionOrderDtoName);
             ProductionOrder productionOrder = productionOrderOptional.get().toBuilder()
                     .name(productionOrderDto.getName())
                     .quantity(productionOrderDto.getQuantity())
                     .product(productRepository.findByProductId(productionOrderDto.getProductUUID()).get())
-                    .productionOrderStatus(productionOrderStatusRepository.findProductionOrderStatusByName(productionOrderDto.getOrder_status()).get())
+                    .productionOrderStatus(productionOrderStatusRepository.findProductionOrderStatusByName(productionOrderStatusDto.getName()).get())
                     .build();
+
+            productionOrderRepository.save(productionOrder);
         }
     }
 
-    public List<ProductionOrderDto> getAllProductionOrders(){
+
+    public List<ProductionOrderDto> getAllProductionOrders() {
         return productionOrderRepository.findAll().stream()
                 .map(productionOrderMapper::mapTo)
                 .collect(Collectors.toList());
 
     }
 
-    public List<ProductionOrderDto> getFilteredProductionOrders(OperationStationDto operationStationDto, ProductionOrderStatusDto productionOrderStatusDto){
+    private ProductionOrderDto findProductionOrderDtoByName(String productionOrderDtoName) {
+        return productionOrderRepository.findProductionOrderByName(productionOrderDtoName).map(productionOrderMapper::mapTo).get();
+    }
+
+    public List<ProductionOrderDto> getFilteredProductionOrders(OperationStationDto operationStationDto, ProductionOrderStatusDto productionOrderStatusDto) {
         return productionOrderRepository.findAll().stream()
                 .filter(po -> Objects.equals(po.getProductionOrderStatus().getName(), productionOrderStatusDto.getName())
                         && Objects.equals(po.getProduct().getOperationStation().getName(), operationStationDto.getName()))
@@ -67,10 +76,9 @@ public class ProductionOrderService {
                 .collect(Collectors.toList());
 
 
-
     }
 
-    public List<ProductionOrderDto> getFilteredOrdersByStatus(ProductionOrderStatusDto productionOrderStatusDto){
+    public List<ProductionOrderDto> getFilteredOrdersByStatus(ProductionOrderStatusDto productionOrderStatusDto) {
         return productionOrderRepository.findAll().stream()
                 .filter(po -> Objects.equals(po.getProductionOrderStatus().getName(), productionOrderStatusDto.getName()))
                 .map(productionOrderMapper::mapTo)
