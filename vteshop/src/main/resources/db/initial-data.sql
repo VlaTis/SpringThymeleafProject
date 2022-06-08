@@ -58,7 +58,24 @@ VALUES ('P-Order 1', 100, 1, 1),
        ('P-Order 14', 100, 1, 5);
 
 
+INSERT INTO users(name, surname, email, password)
+VALUES
+    ('Admin', 'Pavardenis', 'admin@eshop.lt', '{bcrypt}$2a$10$kf8cJpZFe1z3hrI9O/Cjnuh.SKShYOMEGlYigeKxRvwqBAQ4jKJze'), -- pass is admin
+    ('Operator', 'Pavardenis', 'op@eshop.lt', '{bcrypt}$2a$10$kf8cJpZFe1z3hrI9O/Cjnuh.SKShYOMEGlYigeKxRvwqBAQ4jKJze'),
+    ('User', 'Pavardenis', 'user@eshop.lt', '{bcrypt}$2a$10$auHiOfM5qK7.M2ghqP5X/.U2XOa2OjADI7X/6cM9MEI3HglrZuWLW'); -- pass is user
 
+INSERT INTO authority(name)
+VALUES ('ADMIN'),
+       ('OPERATOR'),
+       ('USER');
+
+INSERT INTO users_authorities(user_id, authorities_id)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (2, 2),
+       (2, 3),
+       (3, 3);
 
 
 

@@ -75,6 +75,34 @@ CREATE TABLE production_order
 
 );
 
+DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+    id                BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name              VARCHAR(20)    NOT NULL,
+    surname           VARCHAR(50)    NOT NULL,
+    email             VARCHAR(100)   NOT NULL,
+    password          VARCHAR(255)   NOT NULL,
+    CONSTRAINT users_key UNIQUE (email)
+);
+
+DROP TABLE IF EXISTS authority;
+CREATE TABLE authority
+(
+    id                BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name              VARCHAR(100)    NOT NULL,
+    CONSTRAINT authority_key UNIQUE (name)
+);
+
+CREATE TABLE users_authorities
+(
+    user_id         BIGINT NOT NULL,
+    authorities_id  BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (authorities_id) REFERENCES authority(id)
+)
+
+
 
 
 
