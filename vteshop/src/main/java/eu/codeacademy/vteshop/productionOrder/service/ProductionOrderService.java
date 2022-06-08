@@ -9,6 +9,8 @@ import eu.codeacademy.vteshop.productionOrder.mapper.ProductionOrderMapper;
 import eu.codeacademy.vteshop.productionOrder.repository.ProductionOrderRepository;
 import eu.codeacademy.vteshop.productionOrder.repository.ProductionOrderStatusRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,4 +88,8 @@ public class ProductionOrderService {
     }
 
 
+    public Page<ProductionOrderDto> getProductionOrdersPaginated(Pageable pageable) {
+        return productionOrderRepository.findAll(pageable)
+                .map(productionOrderMapper::mapTo);
+    }
 }

@@ -54,7 +54,7 @@
 					   th:text="#{nav.orders.dropdown}">
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-						<li ><a class="dropdown-item" href="#" th:text="#{nav.orders.dropdown.productionOrders}" ></a></li>
+						<li ><a class="dropdown-item" th:href="@{/orders/production}" th:text="#{nav.orders.dropdown.productionOrders}" ></a></li>
 						<li ><a class="dropdown-item" href="#" th:text="#{nav.orders.dropdown.saleOrders}" ></a></li>
 					</ul>
 				</li>
