@@ -35,6 +35,7 @@ public class OperationPanelController {
 
 
 
+
     @GetMapping("/bearings_centre")
     public String getOrders(Model model){
         OperationStationDto operationStationDto = operationStationService.getOperationStationByName(BEARINGS_CENTRE);
@@ -70,13 +71,25 @@ public class OperationPanelController {
                 ProductionOrderStatusDto.builder()
                         .name(ORDER_STATUS_FINISHED)
                         .build());
-        productService.updateProductQuantity(productionOrderDto.getProductUUID(), productionOrderDto.getQuantity());
+        productService.updateProductQuantity(productionOrderDto.getProductUUID(),
+                productionOrderDto.getQuantity());
 
         return "redirect:" + "/bearings_centre";
-
     }
 
+    @PostMapping("/bearings_centre/cancel")
+    public  String cancelProductionOrder(@RequestParam String productionOrderDtoName){
+        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(BEARINGS_CENTRE);
+        operationStationDto.setStatus_name(STATION_STATUS_IDLE);
+        ProductionOrderDto productionOrderDto = productionOrderService.getProductionOrderDtoByName(productionOrderDtoName);
+        operationStationService.updateOperationStationStatus(operationStationDto);
+        productionOrderService.updateProductionOrderStatus(productionOrderDtoName,
+                ProductionOrderStatusDto.builder()
+                        .name(ORDER_STATUS_READY)
+                        .build());
 
+        return "redirect:" + "/bearings_centre";
+    }
 
 
 
