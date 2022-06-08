@@ -45,11 +45,13 @@
 		<td>
 			<div>
 				<div class="d-flex justify-content-between" th:if="${order.order_status != 'Finished' && order.order_status != 'In Progress'}">
-					<form method="POST" th:action="@{/orders/production/edit}">
+
+
 						<input type="hidden" name="productionOrderDtoName" th:value="${order.name}">
+					<a th:href="@{/orders/production_order/{orderName}/update(orderName=${order.name})}">
 						<button class="btn btn-primary" th:text="#{orders.edit}">
 						</button>
-					</form>
+					</a>
 
 					<form method="POST" th:action="@{/orders/production/delete}">
 						<input type="hidden" name="productionOrderDtoName" th:value="${order.name}">
@@ -85,8 +87,7 @@
 			   th:text="${pageNumber + 1}"></a>
 		</li>
 		<li class="page-item"
-		    th:classappend="${!productionOrdersPaginated.hasNext()} ? 'disabled'"
-		>
+		    th:classappend="${!productionOrdersPaginated.hasNext()} ? 'disabled'">
 			<a class="page-link"
 			   th:href="@{*{urlRootPath}(page=${productionOrdersPaginated.number} + 1)}"
 			   th:text="#{products.next}"
