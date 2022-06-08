@@ -70,15 +70,12 @@ public class ProductController {
     @PostMapping("/product/{productId}/update")
     public String getUpdateProduct(ProductDto productDto) {
         productService.updateProduct(productDto);
-
-
         return "redirect:" + "/products";
     }
-//
+
     @PostMapping("/products/delete")
     public String deleteProduct(@RequestParam UUID productId) {
         productService.deleteProduct(productId);
-
         return "redirect:" + "/products";
     }
 

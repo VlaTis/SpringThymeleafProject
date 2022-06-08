@@ -68,10 +68,15 @@ public class ProductionOrderController {
     }
 
     @PostMapping("/orders/production_order/{orderName}/update")
-    public String getUpdateOrder(ProductionOrderDto orderDto){
-       productionOrderService.updateOrder(orderDto);
+    public String getUpdateOrder(Model model, @Valid @ModelAttribute("orderDto") ProductionOrderDto orderDto,BindingResult errors, @PathVariable String orderName){
+       if(errors.hasErrors()){
+           model.addAttribute("productList", productService.getProducts());
+           model.addAttribute("orderStatusList", statusService.getOrderStatuses());
 
-       return "redirect:" + "orders/production_order";
+           return "orders/production_order";
+       }
+       productionOrderService.updateOrder(orderDto);
+        return "redirect:" + "/orders/production";
     }
 
 

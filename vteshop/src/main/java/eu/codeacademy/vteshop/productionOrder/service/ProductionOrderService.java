@@ -97,6 +97,7 @@ public class ProductionOrderService {
     @Transactional
     public void updateOrder(ProductionOrderDto orderDto){
         Optional<ProductionOrder> orderOptional = productionOrderRepository.findProductionOrderByName(orderDto.getName());
+
         if(orderOptional.isPresent()){
             ProductionOrder order = orderOptional.get().toBuilder()
                     .product(productRepository.findByProductId(orderDto.getProductUUID()).get())
