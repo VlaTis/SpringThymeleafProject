@@ -51,7 +51,8 @@
 					</div>
 
 					<div th:if="${product.productStatusName == 'Available'}">
-						<form method="POST">
+						<form method="POST" th:action="@{/cart/add}">
+							<input type="hidden" name="productId" th:value="${product.productId}">
 							<button class="btn btn-primary">
 								<i class="fa-solid fa-cart-arrow-down"></i>
 							</button>
