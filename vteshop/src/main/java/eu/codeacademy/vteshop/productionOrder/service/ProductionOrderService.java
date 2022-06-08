@@ -92,4 +92,20 @@ public class ProductionOrderService {
         return productionOrderRepository.findAll(pageable)
                 .map(productionOrderMapper::mapTo);
     }
+
+
+    @Transactional
+    public void updateOrder(ProductionOrderDto orderDto){
+        Optional<ProductionOrder> orderOptional = productionOrderRepository.findProductionOrderByName(orderDto.getName());
+        if(orderOptional.isPresent()){
+            ProductionOrder order = orderOptional.get().toBuilder()
+                    .product(productRepository.findByProductId(orderDto.getProductUUID()).get())
+                    .quantity(orderDto.getQuantity())
+                    .name(orderDto.getName())
+                    .build();
+
+            productionOrderRepository.save(order);
+        }
+
+    }
 }

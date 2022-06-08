@@ -7,6 +7,8 @@
 <h3 th:text="#{orders.production.title}"></h3>
 
 
+<body>
+
 
 <div th:if="${not productionOrdersPaginated.hasContent()}" th:text="#{products.list.emptyMessage}"></div>
 
@@ -61,16 +63,6 @@
 	</tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
 <!--pagination slider-->
 <nav class="d-flex justify-content-center">
 	<ul class="pagination"
@@ -105,3 +97,4 @@
 
 
 </div>
+</body>
