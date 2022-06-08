@@ -68,7 +68,14 @@ public class ProductController {
     }
 
     @PostMapping("/product/{productId}/update")
-    public String getUpdateProduct(ProductDto productDto) {
+    public String getUpdateProduct(Model model, @Valid ProductDto productDto, BindingResult errors) {
+        if (errors.hasErrors()){
+            model.addAttribute("productStatusList", productStatusService.getProductStatuses());
+            model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
+            model.addAttribute("operationStationsList", operationStationService.getOperationStations());
+
+            return "products/product";
+        }
         productService.updateProduct(productDto);
         return "redirect:" + "/products";
     }
