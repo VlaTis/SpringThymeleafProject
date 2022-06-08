@@ -1,4 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 <head th:replace="fragments/layout :: head(#{home.title})"></head>
 
@@ -42,7 +43,7 @@
 						</a>
 					</div>
 
-					<div>
+					<div sec:authorize="hasRole('ADMIN')">
 						<form method="POST" th:action="@{/products/delete}">
 							<input type="hidden" name="productId" th:value="${product.productId}">
 							<button class="btn btn-danger" th:text="#{products.delete}">
