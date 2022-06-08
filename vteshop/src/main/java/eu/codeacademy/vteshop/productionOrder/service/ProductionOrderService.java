@@ -77,9 +77,10 @@ public class ProductionOrderService {
 
     }
 
-    public List<ProductionOrderDto> getFilteredOrdersByStatus(ProductionOrderStatusDto productionOrderStatusDto) {
+    public List<ProductionOrderDto> getFilteredOrdersByStatusAndStation(ProductionOrderStatusDto productionOrderStatusDto, OperationStationDto operationStationDto) {
         return productionOrderRepository.findAll().stream()
-                .filter(po -> Objects.equals(po.getProductionOrderStatus().getName(), productionOrderStatusDto.getName()))
+                .filter(po -> Objects.equals(po.getProductionOrderStatus().getName(), productionOrderStatusDto.getName())
+                        && Objects.equals(po.getProduct().getOperationStation().getName(), operationStationDto.getName()))
                 .map(productionOrderMapper::mapTo)
                 .collect(Collectors.toList());
     }

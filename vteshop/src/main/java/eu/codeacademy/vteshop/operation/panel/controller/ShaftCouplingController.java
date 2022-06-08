@@ -7,63 +7,51 @@ import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderDto;
 import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderStatusDto;
 import eu.codeacademy.vteshop.productionOrder.service.ProductionOrderService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import static eu.codeacademy.vteshop.helper.OperationConstants.*;
 
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
-public class OperationPanelController {
+public class ShaftCouplingController {
 
     private final ProductionOrderService productionOrderService;
     private final OperationStationService operationStationService;
     private final ProductService productService;
-    private final String STATION_STATUS_BUSY = "Busy";
-    private final String STATION_STATUS_IDLE = "Idle";
-    private final String BEARINGS_CENTRE = "Bearings";
-    private final String SHAFT_COUPLING = "Shaft and Coupling";
-    private final String ORDER_STATUS_READY = "Ready for Production";
-    private final String ORDER_STATUS_PROGRESS = "In Progress";
-    private final String ORDER_STATUS_FINISHED = "Finished";
-    private final String ORDER_STATUS_PAUSED = "Paused";
 
 
-
-
-
-    @GetMapping("/bearings_centre")
+    @GetMapping("/shaft_coupling")
     public String getOrders(Model model){
-        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(BEARINGS_CENTRE);
+        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(SHAFT_COUPLING);
         model.addAttribute("operationStation", operationStationDto);
         model.addAttribute("productionOrders", productionOrderService.getFilteredProductionOrders(operationStationDto,
                 ProductionOrderStatusDto.builder().name(ORDER_STATUS_READY).build()));
-        model.addAttribute("currentOrder", productionOrderService.getFilteredOrdersByStatus(ProductionOrderStatusDto.builder()
+        model.addAttribute("currentOrder", productionOrderService.getFilteredOrdersByStatusAndStation(ProductionOrderStatusDto.builder()
                 .name(ORDER_STATUS_PROGRESS)
-                .build()));
+                .build(), operationStationDto));
 
-        return "production/bearings";
+        return "production/shaft_coupling";
     }
 
-    @PostMapping("/bearings_centre/start")
+    @PostMapping("/shaft_coupling/start")
     public String startProductionOrder(@RequestParam String productionOrderDtoName){
-        OperationStationDto operationStationDto =  operationStationService.getOperationStationByName(BEARINGS_CENTRE);
-        operationStationDto.setStatus_name("Busy");
+        OperationStationDto operationStationDto =  operationStationService.getOperationStationByName(SHAFT_COUPLING);
+        operationStationDto.setStatus_name(STATION_STATUS_BUSY);
         operationStationService.updateOperationStationStatus(operationStationDto);
         productionOrderService.updateProductionOrderStatus(productionOrderDtoName, ProductionOrderStatusDto.builder()
                 .name(ORDER_STATUS_PROGRESS).
                 build());
 
-        return "redirect:" + "/bearings_centre";
+        return "redirect:" + "/shaft_coupling";
     }
 
-    @PostMapping("/bearings_centre/finish")
+    @PostMapping("/shaft_coupling/finish")
     public  String finishProductionOrder(@RequestParam String productionOrderDtoName){
-        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(BEARINGS_CENTRE);
+        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(SHAFT_COUPLING);
         operationStationDto.setStatus_name(STATION_STATUS_IDLE);
         ProductionOrderDto productionOrderDto = productionOrderService.getProductionOrderDtoByName(productionOrderDtoName);
         operationStationService.updateOperationStationStatus(operationStationDto);
@@ -74,24 +62,20 @@ public class OperationPanelController {
         productService.updateProductQuantity(productionOrderDto.getProductUUID(),
                 productionOrderDto.getQuantity());
 
-        return "redirect:" + "/bearings_centre";
+        return "redirect:" + "/shaft_coupling";
     }
 
-    @PostMapping("/bearings_centre/cancel")
+    @PostMapping("/shaft_coupling/cancel")
     public  String cancelProductionOrder(@RequestParam String productionOrderDtoName){
-        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(BEARINGS_CENTRE);
+        OperationStationDto operationStationDto = operationStationService.getOperationStationByName(SHAFT_COUPLING);
         operationStationDto.setStatus_name(STATION_STATUS_IDLE);
-        ProductionOrderDto productionOrderDto = productionOrderService.getProductionOrderDtoByName(productionOrderDtoName);
         operationStationService.updateOperationStationStatus(operationStationDto);
         productionOrderService.updateProductionOrderStatus(productionOrderDtoName,
                 ProductionOrderStatusDto.builder()
                         .name(ORDER_STATUS_READY)
                         .build());
 
-        return "redirect:" + "/bearings_centre";
+        return "redirect:" + "/shaft_coupling";
     }
-
-
-
 
 }

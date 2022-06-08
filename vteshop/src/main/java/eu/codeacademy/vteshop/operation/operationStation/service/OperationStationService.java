@@ -1,7 +1,6 @@
 package eu.codeacademy.vteshop.operation.operationStation.service;
 
 import eu.codeacademy.vteshop.operation.operationStation.entity.OperationStation;
-import eu.codeacademy.vteshop.operation.operationStation.entity.OperationStationStatus;
 import eu.codeacademy.vteshop.operation.operationStation.mapper.OperationStationMapper;
 import eu.codeacademy.vteshop.operation.operationStation.dto.OperationStationDto;
 import eu.codeacademy.vteshop.operation.operationStation.repository.OperationStationRepository;
@@ -37,8 +36,7 @@ public class OperationStationService {
             OperationStation operationStation = operationStationOptional.get().toBuilder()
                     .name(operationStationOptional.get().getName())
                     .operationStationStatus(
-                            statusRepository.findOperationStationStatusByName(
-                                    operationStationDto.getStatus_name()).get())
+                            statusRepository.findOperationStationStatusByName(operationStationDto.getStatus_name()).get())
                     .build();
 
             operationStationRepository.save(operationStation);
