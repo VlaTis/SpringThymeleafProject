@@ -88,4 +88,12 @@ public class ProductService {
         product.ifPresent(value -> productRepository.deleteById(value.getId()));
     }
 
+    @Transactional
+    public void updateProductQuantity(UUID productUUID, Integer quantityUpdate) {
+        ProductDto productDto = getProductByUUID(productUUID);
+        Integer newQuantity = productDto.getQuantity() + quantityUpdate;
+        productDto.setQuantity(newQuantity);
+        updateProduct(productDto);
+
+    }
 }

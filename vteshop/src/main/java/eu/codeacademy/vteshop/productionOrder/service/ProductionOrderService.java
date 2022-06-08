@@ -5,7 +5,6 @@ import eu.codeacademy.vteshop.product.repository.ProductRepository;
 import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderDto;
 import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderStatusDto;
 import eu.codeacademy.vteshop.productionOrder.entity.ProductionOrder;
-import eu.codeacademy.vteshop.productionOrder.entity.ProductionOrderStatus;
 import eu.codeacademy.vteshop.productionOrder.mapper.ProductionOrderMapper;
 import eu.codeacademy.vteshop.productionOrder.repository.ProductionOrderRepository;
 import eu.codeacademy.vteshop.productionOrder.repository.ProductionOrderStatusRepository;
@@ -44,7 +43,7 @@ public class ProductionOrderService {
 
 
         if (productionOrderOptional.isPresent()) {
-            ProductionOrderDto productionOrderDto = findProductionOrderDtoByName(productionOrderDtoName);
+            ProductionOrderDto productionOrderDto = getProductionOrderDtoByName(productionOrderDtoName);
             ProductionOrder productionOrder = productionOrderOptional.get().toBuilder()
                     .name(productionOrderDto.getName())
                     .quantity(productionOrderDto.getQuantity())
@@ -64,7 +63,7 @@ public class ProductionOrderService {
 
     }
 
-    private ProductionOrderDto findProductionOrderDtoByName(String productionOrderDtoName) {
+    public ProductionOrderDto getProductionOrderDtoByName(String productionOrderDtoName) {
         return productionOrderRepository.findProductionOrderByName(productionOrderDtoName).map(productionOrderMapper::mapTo).get();
     }
 

@@ -36,7 +36,9 @@ public class OperationStationService {
         if(operationStationOptional.isPresent()){
             OperationStation operationStation = operationStationOptional.get().toBuilder()
                     .name(operationStationOptional.get().getName())
-                    .operationStationStatus(statusRepository.findOperationStationStatusByName(operationStationDto.getStatus_name()).get())
+                    .operationStationStatus(
+                            statusRepository.findOperationStationStatusByName(
+                                    operationStationDto.getStatus_name()).get())
                     .build();
 
             operationStationRepository.save(operationStation);
@@ -48,5 +50,12 @@ public class OperationStationService {
         return operationStationRepository.findAll().stream()
                 .map(operationStationMapper::mapTo)
                 .collect(Collectors.toList());
+    }
+
+    public OperationStationDto getOperationStationByName(String opStation){
+       return getOperationStations().stream()
+               .filter(operationStationDto -> operationStationDto.getName().equalsIgnoreCase(opStation))
+               .findAny()
+               .get();
     }
 }

@@ -9,16 +9,31 @@
 	<div class="spinner-border" role="status" th:classappend="${operationStation.status_name == 'Busy'} ? 'text-success' : 'text-warning'"></div>
 	<div th:if="${currentOrder.size() > 0}">
 		<div th:text="${currentOrder.get(0).name} + ' ' + #{operations.current.order}"></div>
+
+
+
 		<div>
-			<form method="POST" th:action="@{/bearbearings_centre/finish}">
+			<form method="POST" th:action="@{/bearings_centre/finish}">
+				<input type="hidden" name="productionOrderDtoName" th:value="${currentOrder.get(0).name}">
 				<button class="btn btn-warning" th:text="#{operations.finish}">
 				</button>
 			</form>
 		</div>
 
+
+
 	</div>
 
 </div>
+
+
+
+
+
+
+
+
+
 
 
 <h3 th:text="#{operations.station.status}"></h3>
@@ -29,6 +44,7 @@
 		<th scope="col" style="width: auto" th:text="#{operations.orders.name}"></th>
 		<th scope="col" style="width: 15%" th:text="#{operations.orders.product}"></th>
 		<th scope="col" style="width: 15%" th:text="#{operations.orders.quantity}"></th>
+		<th scope="col" style="width: 15%" ></th>
 
 	</tr>
 	</thead>

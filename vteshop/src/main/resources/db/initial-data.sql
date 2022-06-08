@@ -9,8 +9,8 @@ VALUES ('Busy'),
        ('Idle');
 
 INSERT INTO operation_station(name, operation_station_status)
-VALUES ('Shaft and Coupling Machining', 2),
-       ('Bearings production', 2);
+VALUES ('Shaft and Coupling', 2),
+       ('Bearings', 2);
 
 
 INSERT INTO product_status(name)
@@ -21,7 +21,7 @@ INSERT INTO production_order_status(name)
 VALUES ('Finished'),
        ('In Progress'),
        ('Ready for Production'),
-       ('Canceled');
+       ('Paused');
 
 
 INSERT INTO product (product_id, name, quantity_in_stock, price, description, operation_station, product_status,
