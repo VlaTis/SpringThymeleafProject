@@ -35,7 +35,7 @@
 					</ul>
 				</div>
 				<div class="card-body">
-					<div class="mb-1">
+					<div class="mb-1" sec:authorize="hasRole('ADMIN')" >
 						<input type="hidden" name="productId" th:value="${product.productId}">
 						<a th:href="@{/product/{productId}/update(productId=${product.productId})}">
 							<button class="btn btn-warning" th:text="#{products.edit}">

@@ -27,10 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**", "/").permitAll()
+                .antMatchers("/public/**", "/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
+                .cors()
+                .and()
+                .csrf()
+                .disable()
                 .formLogin()
                 .permitAll()
                 .loginPage("/login-eshop")
@@ -44,12 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll();
+
+
     }
 
 
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+
         web.ignoring().requestMatchers(
                 PathRequest.toStaticResources().atCommonLocations(),
                 PathRequest.toH2Console() //FIXME: when take profile lesson
@@ -66,6 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
+
 
 
 }

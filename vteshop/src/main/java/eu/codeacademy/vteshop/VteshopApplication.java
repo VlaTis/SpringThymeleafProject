@@ -9,17 +9,17 @@ import org.springframework.core.env.StandardEnvironment;
 public class VteshopApplication {
 
     public static void main(String[] args) {
-//        SpringApplication.run(VteshopApplication.class, args);
+        SpringApplication.run(VteshopApplication.class, args);
 
 
 
 
-        ConfigurableEnvironment envConf = new StandardEnvironment();
-        envConf.addActiveProfile("dev");
-
-       SpringApplication app = new SpringApplication(VteshopApplication.class);
-       app.setEnvironment(envConf);
-       app.run(args);
+//        ConfigurableEnvironment envConf = new StandardEnvironment();
+//        envConf.addActiveProfile("dev");
+//
+//       SpringApplication app = new SpringApplication(VteshopApplication.class);
+//       app.setEnvironment(envConf);
+//       app.run(args);
     }
 
 }
