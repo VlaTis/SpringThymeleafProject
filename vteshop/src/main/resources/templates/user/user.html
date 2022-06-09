@@ -4,7 +4,7 @@
 <head th:replace="fragments/layout :: head(#{create.user.add})"></head>
 <body>
 
-<div th:replace="fragments/layout :: navbar"></div>
+<div th:replace="fragments/layout :: navbar(rootPath='')"></div>
 
 <div class="container">
 	<h3 th:text="#{create.user.add}"></h3>

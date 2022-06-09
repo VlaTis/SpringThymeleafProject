@@ -13,12 +13,12 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" th:src="@{/js/language.js}"></script>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/static/css/stylesheet.css}">
 	<title th:text="*{title}"></title>
 </head>
 
 <!--default navbar for all layouts-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav th:fragment="navbar(rootPath)" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<div class="container-fluid">
 		<a class="navbar-brand" th:href="@{/}">VTe</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -37,11 +37,11 @@
 				</li>
 
 				<li class="nav-item" sec:authorize="!isAuthenticated()">
-					<a class="nav-link" aria-current="page" th:href="@{/public/create_user}">Register</a>
+					<a class="nav-link" aria-current="page" th:href="@{/public/create_user}" th:text="#{nav.register}"></a>
 				</li>
 
 				<li class="nav-item" >
-					<a class="nav-link" aria-current="page" th:href="@{/public/cart}">Cart</a>
+					<a class="nav-link" aria-current="page" th:href="@{/public/cart}" th:text="#{nav.cart}"></a>
 
 				<li class="nav-item dropdown" sec:authorize="hasRole('OPERATOR')">
 					<a class="nav-link dropdown-toggle" href="#"
@@ -80,11 +80,13 @@
 					<a class="nav-link" aria-current="page" th:href="@{/logout}" th:text="#{nav.logout}"></a>
 				</li>
 
-
-
+				<li class="nav-item" th:replace="this :: language(${rootPath})"></li>
 
 			</ul>
 			<span class="navbar-text" sec:authorize="isAuthenticated()" sec:authentication="principal.fullName"></span>
+
+
+
 
 		</div>
 	</div>
@@ -135,3 +137,17 @@
 </div>
 </html>
 
+<li th:fragment="language(rootPath)" class="nav-item dropdown">
+	<a class="nav-link dropdown-toggle"
+	   href="#"
+	   id="navbarDarkDropdownMenuLink"
+	   role="button"
+	   data-bs-toggle="dropdown"
+	   aria-expanded="false"
+	   th:text="#{lang.option}">
+	</a>
+	<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+		<li><a class="dropdown-item" th:href="'/' + *{rootPath} + '?lang=lt'">Lietuvių</a></li>
+		<li><a class="dropdown-item" th:href="'/' + *{rootPath} + '?lang=en'">English</a></li>
+	</ul>
+</li>

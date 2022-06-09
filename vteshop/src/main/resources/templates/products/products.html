@@ -5,7 +5,7 @@
 <head th:replace="fragments/layout :: head(#{home.title})"></head>
 <body>
 
-<div th:replace="fragments/layout :: navbar"></div>
+<div th:replace="fragments/layout :: navbar(rootPath='')"></div>
 
 <div class="container">
 	<h3 th:text="#{products.list.title}"></h3>
@@ -22,7 +22,7 @@
 
 
 			<div class="col" th:each="product: ${productListPaginated}">
-				<div class="card" style="width: 18rem;">
+				<div class="card" id="custom_cards" style="width: 18rem;">
 					<div type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 						<img th:src="@{/images/hederio_img.png}" class="card-img-top" alt="...">
 						<div class="card-body">
@@ -30,8 +30,8 @@
 							<p class="card-text" th:text="${product.description}"></p>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:text="${product.price}"></li>
-							<li class="list-group-item" th:text="${product.quantity}"></li>
+							<li class="list-group-item" th:text="${product.price} +' '+ ${currency}"></li>
+							<li class="list-group-item" th:text="${product.quantity} + ' ' +#{product.unit.quantity}"></li>
 							<li class="list-group-item" th:text="${product.productStatusName}"></li>
 						</ul>
 					</div>
@@ -53,14 +53,6 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
 									</button>
-									<div th:if="${product.productStatusName == 'Available'}">
-										<form method="POST" th:action="@{/public/cart/add}">
-											<input type="hidden" name="productId" th:value="${product.productId}">
-											<button class="btn btn-primary">
-												<i class="fa-solid fa-cart-arrow-down"></i>
-											</button>
-										</form>
-									</div>
 								</div>
 							</div>
 						</div>
