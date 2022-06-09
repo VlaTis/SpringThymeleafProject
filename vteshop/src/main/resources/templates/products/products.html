@@ -44,12 +44,13 @@
 					</div>
 
 					<div sec:authorize="hasRole('ADMIN')">
-						<form method="POST" th:action="@{/products/delete}">
+
+						<form method="POST" th:if="${!orderedProducts.contains(product.productId)}" th:action="@{/products/delete}">
 							<input type="hidden" name="productId" th:value="${product.productId}">
 							<button class="btn btn-danger" th:text="#{products.delete}">
 							</button>
 						</form>
-					</div>
+
 
 					<div th:if="${product.productStatusName == 'Available'}">
 						<form method="POST" th:action="@{/cart/add}">
@@ -62,9 +63,9 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
+	</div>
+
 	<nav class="d-flex justify-content-center">
 		<ul class="pagination"
 		    th:with="
@@ -97,7 +98,7 @@
 	</nav>
 
 
-</div>
+
 
 
 <!-- Button trigger modal -->

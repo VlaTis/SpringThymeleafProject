@@ -1,6 +1,7 @@
 package eu.codeacademy.vteshop.product.controller;
 
 import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
+import eu.codeacademy.vteshop.orders.production.service.ProductionOrderService;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.product.service.ProductService;
@@ -26,6 +27,7 @@ public class ProductController {
     private final ProductStatusService productStatusService;
     private final ProductCategoryService productCategoryService;
     private final OperationStationService operationStationService;
+    private final ProductionOrderService productionOrderService;
 
     @GetMapping("/product")
     public String openCreateProductForm(Model model) {
@@ -33,6 +35,7 @@ public class ProductController {
         model.addAttribute("productStatusList", productStatusService.getProductStatuses());
         model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
         model.addAttribute("operationStationsList", operationStationService.getOperationStations());
+
         return "products/product";
     }
 
@@ -54,6 +57,7 @@ public class ProductController {
     public String getProducts(
             Model model, @PageableDefault(size = 8, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
         model.addAttribute("productListPaginated", productService.getProductsPaginated(pageable));
+        model.addAttribute("orderedProducts", productionOrderService.getOrderedProductsUUIDs());
         return "products/products";
     }
 
