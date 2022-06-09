@@ -19,14 +19,14 @@ public class UserController {
     private final UserValidator validator;
     private final UserService userService;
 
-    @GetMapping("/create_user")
+    @GetMapping("/public/create_user")
     public String getUserForm(Model model) {
         model.addAttribute("userDto", UserDto.builder().build());
 
         return "/user/user";
     }
 
-    @PostMapping("/create_user")
+    @PostMapping("/public/create_user")
     public String register(@Valid UserDto userDto, BindingResult errors) {
         validator.validate(userDto, errors);
         if (errors.hasErrors()) {

@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.product.service;
 
-import eu.codeacademy.vteshop.operation.operationStation.repository.OperationStationRepository;
+import eu.codeacademy.vteshop.operation.station.repository.OperationStationRepository;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.entity.Product;
 import eu.codeacademy.vteshop.product.exeption.ProductNotFoundException;

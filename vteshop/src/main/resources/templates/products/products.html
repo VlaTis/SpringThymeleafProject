@@ -34,6 +34,34 @@
 						<li class="list-group-item" th:text="${product.productStatusName}"></li>
 					</ul>
 				</div>
+
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+				     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="staticBackdropLabel" th:text="${product.name}">Modal title</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body" th:text="${product.description}">
+								...
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<div th:if="${product.productStatusName == 'Available'}">
+									<form method="POST" th:action="@{/public/cart/add}">
+										<input type="hidden" name="productId" th:value="${product.productId}">
+										<button class="btn btn-primary">
+											<i class="fa-solid fa-cart-arrow-down"></i>
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
 				<div class="card-body">
 					<div class="mb-1" sec:authorize="hasRole('ADMIN')" >
 						<input type="hidden" name="productId" th:value="${product.productId}">
@@ -44,23 +72,23 @@
 					</div>
 
 					<div sec:authorize="hasRole('ADMIN')">
-
 						<form method="POST" th:if="${!orderedProducts.contains(product.productId)}" th:action="@{/products/delete}">
 							<input type="hidden" name="productId" th:value="${product.productId}">
 							<button class="btn btn-danger" th:text="#{products.delete}">
 							</button>
 						</form>
+					</div>
 
 
 					<div th:if="${product.productStatusName == 'Available'}">
-						<form method="POST" th:action="@{/cart/add}">
+						<form method="POST" th:action="@{/public/cart/add}">
 							<input type="hidden" name="productId" th:value="${product.productId}">
 							<button class="btn btn-primary">
 								<i class="fa-solid fa-cart-arrow-down"></i>
 							</button>
 						</form>
 					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -101,30 +129,11 @@
 
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-	Launch static backdrop modal
-</button>
+
+
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Understood</button>
-			</div>
-		</div>
-	</div>
-</div>
+
 
 
 </body>

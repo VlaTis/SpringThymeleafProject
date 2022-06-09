@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.product.controller;
 
-import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
+import eu.codeacademy.vteshop.operation.station.service.OperationStationService;
 import eu.codeacademy.vteshop.orders.production.service.ProductionOrderService;
 import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.service.ProductCategoryService;
@@ -29,7 +29,13 @@ public class ProductController {
     private final OperationStationService operationStationService;
     private final ProductionOrderService productionOrderService;
 
-    @GetMapping("/product")
+
+    private static final String PRODUCT_ROOT_PATH = "/product";
+    public static final String PUBLIC_PRODUCTS_ROOT_PATH = "/public/products";
+    private static final String PRODUCT_DELETE_PATH = "/products/delete";
+
+
+    @GetMapping(PRODUCT_ROOT_PATH)
     public String openCreateProductForm(Model model) {
         model.addAttribute("productDto", ProductDto.builder().build());
         model.addAttribute("productStatusList", productStatusService.getProductStatuses());
@@ -39,10 +45,10 @@ public class ProductController {
         return "products/product";
     }
 
-    @PostMapping("/product")
-    public String createProduct(Model model, @Valid  ProductDto productDto, BindingResult errors,
+    @PostMapping(PRODUCT_ROOT_PATH)
+    public String createProduct(Model model, @Valid ProductDto productDto, BindingResult errors,
                                 RedirectAttributes redirectAttributes) {
-        if (errors.hasErrors()){
+        if (errors.hasErrors()) {
             model.addAttribute("productStatusList", productStatusService.getProductStatuses());
             model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
             model.addAttribute("operationStationsList", operationStationService.getOperationStations());
@@ -50,10 +56,10 @@ public class ProductController {
         }
         productService.addProduct(productDto);
         redirectAttributes.addAttribute("message", "product.create.success");
-        return "redirect:" + "/product";
+        return "redirect:" + PUBLIC_PRODUCTS_ROOT_PATH;
     }
 
-    @GetMapping("/products")
+    @GetMapping(PUBLIC_PRODUCTS_ROOT_PATH)
     public String getProducts(
             Model model, @PageableDefault(size = 8, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
         model.addAttribute("productListPaginated", productService.getProductsPaginated(pageable));
@@ -73,7 +79,7 @@ public class ProductController {
 
     @PostMapping("/product/{productId}/update")
     public String getUpdateProduct(Model model, @Valid ProductDto productDto, BindingResult errors) {
-        if (errors.hasErrors()){
+        if (errors.hasErrors()) {
             model.addAttribute("productStatusList", productStatusService.getProductStatuses());
             model.addAttribute("productCategoryList", productCategoryService.getProductCategories());
             model.addAttribute("operationStationsList", operationStationService.getOperationStations());
@@ -81,16 +87,14 @@ public class ProductController {
             return "products/product";
         }
         productService.updateProduct(productDto);
-        return "redirect:" + "/products";
+        return "redirect:" + PUBLIC_PRODUCTS_ROOT_PATH;
     }
 
-    @PostMapping("/products/delete")
+    @PostMapping(PRODUCT_DELETE_PATH)
     public String deleteProduct(@RequestParam UUID productId) {
         productService.deleteProduct(productId);
-        return "redirect:" + "/products";
+        return "redirect:" + PUBLIC_PRODUCTS_ROOT_PATH;
     }
-
-
 
 
 }

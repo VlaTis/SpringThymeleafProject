@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.orders.production.service;
 
-import eu.codeacademy.vteshop.operation.operationStation.dto.OperationStationDto;
+import eu.codeacademy.vteshop.operation.station.dto.OperationStationDto;
 import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderDto;
 import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderStatusDto;
 import eu.codeacademy.vteshop.orders.production.entity.ProductionOrder;

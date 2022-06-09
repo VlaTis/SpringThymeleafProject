@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.product.validator;
 
-import eu.codeacademy.vteshop.operation.operationStation.repository.OperationStationRepository;
+import eu.codeacademy.vteshop.operation.station.repository.OperationStationRepository;
 
 import lombok.RequiredArgsConstructor;
 

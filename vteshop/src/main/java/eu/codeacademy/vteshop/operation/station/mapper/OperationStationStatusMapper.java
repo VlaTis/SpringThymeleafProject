@@ -1,7 +1,7 @@
-package eu.codeacademy.vteshop.operation.operationStation.mapper;
+package eu.codeacademy.vteshop.operation.station.mapper;
 
-import eu.codeacademy.vteshop.operation.operationStation.dto.OperationStationStatusDto;
-import eu.codeacademy.vteshop.operation.operationStation.entity.OperationStationStatus;
+import eu.codeacademy.vteshop.operation.station.dto.OperationStationStatusDto;
+import eu.codeacademy.vteshop.operation.station.entity.OperationStationStatus;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.operation.operationStation.entity;
+package eu.codeacademy.vteshop.operation.station.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

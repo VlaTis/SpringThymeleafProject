@@ -1,7 +1,7 @@
 package eu.codeacademy.vteshop.operation.panel.controller;
 
-import eu.codeacademy.vteshop.operation.operationStation.dto.OperationStationDto;
-import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
+import eu.codeacademy.vteshop.operation.station.dto.OperationStationDto;
+import eu.codeacademy.vteshop.operation.station.service.OperationStationService;
 import eu.codeacademy.vteshop.product.service.ProductService;
 import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderDto;
 import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderStatusDto;
@@ -22,9 +22,13 @@ public class ShaftCouplingController {
     private final ProductionOrderService productionOrderService;
     private final OperationStationService operationStationService;
     private final ProductService productService;
+    public static final String OP_SC_ST_PATH = "/op/shaft_coupling";
+    public static final String OP_SC_START_PATH = "/op/shaft_coupling/start";
+    public static final String OP_SC_FINISH_PATH = "/op/shaft_coupling/finish";
+    public static final String OP_SC_CANCEL_PATH = "/op/shaft_coupling/cancel";
 
 
-    @GetMapping("/shaft_coupling")
+    @GetMapping(OP_SC_ST_PATH)
     public String getOrders(Model model){
         OperationStationDto operationStationDto = operationStationService.getOperationStationByName(SHAFT_COUPLING);
         model.addAttribute("operationStation", operationStationDto);
@@ -37,7 +41,7 @@ public class ShaftCouplingController {
         return "production/shaft_coupling";
     }
 
-    @PostMapping("/shaft_coupling/start")
+    @PostMapping(OP_SC_START_PATH)
     public String startProductionOrder(@RequestParam String productionOrderDtoName){
         OperationStationDto operationStationDto =  operationStationService.getOperationStationByName(SHAFT_COUPLING);
         operationStationDto.setStatus_name(STATION_STATUS_BUSY);
@@ -46,10 +50,10 @@ public class ShaftCouplingController {
                 .name(ORDER_STATUS_PROGRESS).
                 build());
 
-        return "redirect:" + "/shaft_coupling";
+        return "redirect:" + OP_SC_ST_PATH;
     }
 
-    @PostMapping("/shaft_coupling/finish")
+    @PostMapping(OP_SC_FINISH_PATH)
     public  String finishProductionOrder(@RequestParam String productionOrderDtoName){
         OperationStationDto operationStationDto = operationStationService.getOperationStationByName(SHAFT_COUPLING);
         operationStationDto.setStatus_name(STATION_STATUS_IDLE);
@@ -62,10 +66,10 @@ public class ShaftCouplingController {
         productService.updateProductQuantity(productionOrderDto.getProductUUID(),
                 productionOrderDto.getQuantity());
 
-        return "redirect:" + "/shaft_coupling";
+        return "redirect:" + OP_SC_ST_PATH;
     }
 
-    @PostMapping("/shaft_coupling/cancel")
+    @PostMapping(OP_SC_CANCEL_PATH)
     public  String cancelProductionOrder(@RequestParam String productionOrderDtoName){
         OperationStationDto operationStationDto = operationStationService.getOperationStationByName(SHAFT_COUPLING);
         operationStationDto.setStatus_name(STATION_STATUS_IDLE);
@@ -75,7 +79,7 @@ public class ShaftCouplingController {
                         .name(ORDER_STATUS_READY)
                         .build());
 
-        return "redirect:" + "/shaft_coupling";
+        return "redirect:" + OP_SC_ST_PATH;
     }
 
 }
