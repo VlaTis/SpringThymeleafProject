@@ -25,10 +25,10 @@ public class UserDto {
     @Email
     private String email;
 
-    @Size(min = 6, max = 255)
+    @Size(min = 3, max = 255)
     private String password;
 
-    @Size(min = 6, max = 255)
+    @Size(min = 3, max = 255)
     private String repeatedPassword;
 
 

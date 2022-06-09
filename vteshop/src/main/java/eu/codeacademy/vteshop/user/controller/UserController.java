@@ -1,6 +1,7 @@
 package eu.codeacademy.vteshop.user.controller;
 
 import eu.codeacademy.vteshop.user.dto.UserDto;
+import eu.codeacademy.vteshop.user.service.UserRegistrationService;
 import eu.codeacademy.vteshop.user.service.UserService;
 import eu.codeacademy.vteshop.validator.spring.UserValidator;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class UserController {
 
     private final UserValidator validator;
     private final UserService userService;
+    private final UserRegistrationService registrationService;
 
     @GetMapping("/public/create_user")
     public String getUserForm(Model model) {
@@ -33,7 +35,7 @@ public class UserController {
             return "/user/user";
         }
 
-        userService.register(userDto);
+        registrationService.register(userDto);
 
         return "redirect:" + "/login-eshop";
     }
