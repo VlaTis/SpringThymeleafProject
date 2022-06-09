@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.productionOrder.dto;
+package eu.codeacademy.vteshop.orders.production.dto;
 
 import lombok.Builder;
 import lombok.Data;

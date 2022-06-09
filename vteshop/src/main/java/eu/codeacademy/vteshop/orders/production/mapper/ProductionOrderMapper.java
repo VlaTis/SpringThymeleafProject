@@ -1,7 +1,7 @@
-package eu.codeacademy.vteshop.productionOrder.mapper;
+package eu.codeacademy.vteshop.orders.production.mapper;
 
-import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderDto;
-import eu.codeacademy.vteshop.productionOrder.entity.ProductionOrder;
+import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderDto;
+import eu.codeacademy.vteshop.orders.production.entity.ProductionOrder;
 import org.springframework.stereotype.Component;
 
 @Component

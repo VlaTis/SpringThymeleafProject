@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS operation_station_status;
 CREATE TABLE operation_station_status
 (
-    id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     CONSTRAINT operation_station_status_key UNIQUE (name)
 );
@@ -10,7 +10,7 @@ CREATE TABLE operation_station_status
 DROP TABLE IF EXISTS operation_station;
 CREATE TABLE operation_station
 (
-    id                       BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id                       BIGSERIAL PRIMARY KEY,
     name                     VARCHAR(50) NOT NULL,
     operation_station_status BIGINT references operation_station_status (id),
     CONSTRAINT operation_station_key UNIQUE (name),
@@ -22,7 +22,7 @@ CREATE TABLE operation_station
 DROP TABLE IF EXISTS product_category;
 CREATE TABLE product_category
 (
-    id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     CONSTRAINT product_category_key UNIQUE (name)
 );
@@ -30,14 +30,14 @@ CREATE TABLE product_category
 DROP TABLE IF EXISTS product_status;
 CREATE TABLE product_status
 (
-    id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     CONSTRAINT product_status_key UNIQUE (name)
 );
 DROP TABLE IF EXISTS product;
 CREATE TABLE product
 (
-    id                BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id                BIGSERIAL PRIMARY KEY,
     product_id        UUID           NOT NULL,
     name              VARCHAR(20)    NOT NULL,
     quantity_in_stock INT            NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE product
 DROP TABLE IF EXISTS production_order_status;
 CREATE TABLE production_order_status
 (
-    id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     CONSTRAINT production_order_status_key UNIQUE (name)
 );
@@ -66,7 +66,7 @@ CREATE TABLE production_order_status
 DROP TABLE IF EXISTS production_order;
 CREATE TABLE production_order
 (
-    id                      BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id                      BIGSERIAL PRIMARY KEY,
     name                    VARCHAR(50) NOT NULL,
     quantity                INT         NOT NULL,
     production_order_status BIGINT references production_order_status (id),
@@ -78,7 +78,7 @@ CREATE TABLE production_order
 DROP TABLE IF EXISTS users;
 CREATE TABLE users
 (
-    id       BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id       BIGSERIAL PRIMARY KEY,
     name     VARCHAR(20)  NOT NULL,
     surname  VARCHAR(50)  NOT NULL,
     email    VARCHAR(100) NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE users
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority
 (
-    id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     CONSTRAINT authority_key UNIQUE (name)
 );
@@ -106,7 +106,7 @@ CREATE TABLE users_authorities
 DROP TABLE IF EXISTS sales_order;
 CREATE TABLE sales_order
 (
-    id          BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id          BIGSERIAL PRIMARY KEY,
     name        VARCHAR(150)   NOT NULL,
     total_price DECIMAL(30, 2) NOT NUll
 );

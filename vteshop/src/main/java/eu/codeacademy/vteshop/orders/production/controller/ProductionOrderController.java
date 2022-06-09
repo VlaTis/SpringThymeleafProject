@@ -1,12 +1,9 @@
-package eu.codeacademy.vteshop.productionOrder.controller;
+package eu.codeacademy.vteshop.orders.production.controller;
 
-import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
-import eu.codeacademy.vteshop.product.dto.ProductDto;
 import eu.codeacademy.vteshop.product.service.ProductService;
-import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderDto;
-import eu.codeacademy.vteshop.productionOrder.entity.ProductionOrderStatus;
-import eu.codeacademy.vteshop.productionOrder.service.ProductionOrderService;
-import eu.codeacademy.vteshop.productionOrder.service.ProductionOrderStatusService;
+import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderDto;
+import eu.codeacademy.vteshop.orders.production.service.ProductionOrderService;
+import eu.codeacademy.vteshop.orders.production.service.ProductionOrderStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

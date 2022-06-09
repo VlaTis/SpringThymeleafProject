@@ -3,9 +3,9 @@ package eu.codeacademy.vteshop.operation.panel.controller;
 import eu.codeacademy.vteshop.operation.operationStation.dto.OperationStationDto;
 import eu.codeacademy.vteshop.operation.operationStation.service.OperationStationService;
 import eu.codeacademy.vteshop.product.service.ProductService;
-import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderDto;
-import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderStatusDto;
-import eu.codeacademy.vteshop.productionOrder.service.ProductionOrderService;
+import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderDto;
+import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderStatusDto;
+import eu.codeacademy.vteshop.orders.production.service.ProductionOrderService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Controller;

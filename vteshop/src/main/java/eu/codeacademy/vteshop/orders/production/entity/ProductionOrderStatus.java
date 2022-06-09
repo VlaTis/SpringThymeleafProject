@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.productionOrder.entity;
+package eu.codeacademy.vteshop.orders.production.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

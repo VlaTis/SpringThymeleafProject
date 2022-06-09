@@ -1,7 +1,6 @@
-package eu.codeacademy.vteshop.productionOrder.repository;
+package eu.codeacademy.vteshop.orders.production.repository;
 
-import eu.codeacademy.vteshop.product.entity.ProductStatus;
-import eu.codeacademy.vteshop.productionOrder.entity.ProductionOrderStatus;
+import eu.codeacademy.vteshop.orders.production.entity.ProductionOrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

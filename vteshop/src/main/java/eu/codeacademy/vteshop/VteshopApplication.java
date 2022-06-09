@@ -14,12 +14,12 @@ public class VteshopApplication {
 
 
 
-//        ConfigurableEnvironment envConf = new StandardEnvironment();
-//        envConf.addActiveProfile("dev");
-//
-//       SpringApplication app = new SpringApplication(VteshopApplication.class);
-//       app.setEnvironment(envConf);
-//       app.run(args);
+        ConfigurableEnvironment envConf = new StandardEnvironment();
+        envConf.addActiveProfile("pg");
+
+       SpringApplication app = new SpringApplication(VteshopApplication.class);
+       app.setEnvironment(envConf);
+       app.run(args);
     }
 
 }

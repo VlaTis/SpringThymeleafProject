@@ -38,6 +38,7 @@
 	</table>
 
 	<form method="POST" th:action="@{/cart/order}">
+		<input type="hidden" name="totalPrice" th:value="${cartSession.cartTotalPrice}">
 		<button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
 	</form>
 </div>

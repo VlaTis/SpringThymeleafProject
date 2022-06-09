@@ -1,10 +1,8 @@
-package eu.codeacademy.vteshop.productionOrder.service;
+package eu.codeacademy.vteshop.orders.production.service;
 
-import eu.codeacademy.vteshop.operation.operationStation.dto.OperationStationStatusDto;
-import eu.codeacademy.vteshop.productionOrder.dto.ProductionOrderStatusDto;
-import eu.codeacademy.vteshop.productionOrder.entity.ProductionOrderStatus;
-import eu.codeacademy.vteshop.productionOrder.mapper.ProductionOrderStatusMapper;
-import eu.codeacademy.vteshop.productionOrder.repository.ProductionOrderStatusRepository;
+import eu.codeacademy.vteshop.orders.production.dto.ProductionOrderStatusDto;
+import eu.codeacademy.vteshop.orders.production.mapper.ProductionOrderStatusMapper;
+import eu.codeacademy.vteshop.orders.production.repository.ProductionOrderStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
