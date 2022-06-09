@@ -61,7 +61,7 @@ public class ProductController {
 
     @GetMapping(PUBLIC_PRODUCTS_ROOT_PATH)
     public String getProducts(
-            Model model, @PageableDefault(size = 8, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
+            Model model, @PageableDefault(size = 6, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
         model.addAttribute("productListPaginated", productService.getProductsPaginated(pageable));
         model.addAttribute("orderedProducts", productionOrderService.getOrderedProductsUUIDs());
         return "products/products";

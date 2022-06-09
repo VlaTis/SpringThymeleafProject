@@ -11,7 +11,7 @@ public class VteshopApplication {
     public static void main(String[] args) {
         SpringApplication.run(VteshopApplication.class, args);
 //        ConfigurableEnvironment envConf = new StandardEnvironment();
-//        envConf.addActiveProfile("pg");
+//        envConf.addActiveProfile("dev");
 //
 //       SpringApplication app = new SpringApplication(VteshopApplication.class);
 //       app.setEnvironment(envConf);
