@@ -9,7 +9,7 @@ import org.springframework.core.env.StandardEnvironment;
 public class VteshopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VteshopApplication.class, args);
+//        SpringApplication.run(VteshopApplication.class, args);
 
 
 

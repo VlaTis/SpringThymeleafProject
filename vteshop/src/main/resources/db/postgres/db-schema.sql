@@ -17,8 +17,6 @@ CREATE TABLE operation_station
     FOREIGN KEY (operation_station_status) REFERENCES operation_station_status (id)
 );
 
-
-
 DROP TABLE IF EXISTS product_category;
 CREATE TABLE product_category
 (
