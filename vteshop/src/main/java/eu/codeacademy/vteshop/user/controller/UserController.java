@@ -35,6 +35,6 @@ public class UserController {
 
         userService.register(userDto);
 
-        return "redirect:" + "/";
+        return "redirect:" + "/login-eshop";
     }
 }
