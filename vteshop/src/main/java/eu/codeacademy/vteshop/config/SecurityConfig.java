@@ -59,9 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         web.ignoring().requestMatchers(
                 PathRequest.toStaticResources().atCommonLocations(),
-                PathRequest.toH2Console() //FIXME: when take profile lesson
+                PathRequest.toH2Console()
         );
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
