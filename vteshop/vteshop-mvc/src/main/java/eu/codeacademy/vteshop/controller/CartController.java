@@ -1,7 +1,7 @@
-package eu.codeacademy.vteshop.cart.controller;
+package eu.codeacademy.vteshop.controller;
 
-import eu.codeacademy.vteshop.cart.dto.CartDto;
-import eu.codeacademy.vteshop.cart.service.CartService;
+import eu.codeacademy.vteshop.common.cart.dto.CartDto;
+import eu.codeacademy.vteshop.common.cart.service.CartService;
 import eu.codeacademy.vteshop.common.orders.sales.dto.SalesOrderDto;
 import eu.codeacademy.vteshop.common.orders.sales.service.SalesOrderService;
 import lombok.RequiredArgsConstructor;

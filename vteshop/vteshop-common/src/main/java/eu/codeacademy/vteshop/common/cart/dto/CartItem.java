@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.cart.dto;
+package eu.codeacademy.vteshop.common.cart.dto;
 
 import eu.codeacademy.vteshop.common.product.dto.ProductDto;
 import lombok.Builder;
