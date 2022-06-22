@@ -2,8 +2,8 @@ package eu.codeacademy.vteshop.cart.controller;
 
 import eu.codeacademy.vteshop.cart.dto.CartDto;
 import eu.codeacademy.vteshop.cart.service.CartService;
-import eu.codeacademy.vteshop.orders.sales.dto.SalesOrderDto;
-import eu.codeacademy.vteshop.orders.sales.service.SalesOrderService;
+import eu.codeacademy.vteshop.common.orders.sales.dto.SalesOrderDto;
+import eu.codeacademy.vteshop.common.orders.sales.service.SalesOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static eu.codeacademy.vteshop.product.controller.ProductController.PUBLIC_PRODUCTS_ROOT_PATH;
+import static eu.codeacademy.vteshop.controller.ProductController.PUBLIC_PRODUCTS_ROOT_PATH;
 
 @Controller
 @SessionAttributes("cartSession")

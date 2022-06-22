@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.cart.dto;
 
-import eu.codeacademy.vteshop.product.dto.ProductDto;
+import eu.codeacademy.vteshop.common.product.dto.ProductDto;
 import lombok.Builder;
 import lombok.Getter;
 
