@@ -1,7 +1,6 @@
 package eu.codeacademy.vteshop.product.validator;
 
 import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
-import eu.codeacademy.vteshop.product.service.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.ConstraintValidator;
