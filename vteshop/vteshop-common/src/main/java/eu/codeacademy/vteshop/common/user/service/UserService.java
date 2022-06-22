@@ -2,8 +2,8 @@ package eu.codeacademy.vteshop.common.user.service;
 
 import eu.codeacademy.vteshop.common.user.dto.UserDto;
 import eu.codeacademy.vteshop.common.user.mapper.UserMapper;
-import eu.codeacademy.vteshop.user.entity.User;
-import eu.codeacademy.vteshop.user.repository.UserRepository;
+import eu.codeacademy.vteshop.jpa.user.entity.User;
+import eu.codeacademy.vteshop.jpa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

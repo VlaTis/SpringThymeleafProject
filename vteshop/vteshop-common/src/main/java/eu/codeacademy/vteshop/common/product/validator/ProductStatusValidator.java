@@ -1,6 +1,7 @@
 package eu.codeacademy.vteshop.common.product.validator;
 
-import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
+import eu.codeacademy.vteshop.jpa.product.repository.ProductStatusRepository;
+
 import lombok.RequiredArgsConstructor;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

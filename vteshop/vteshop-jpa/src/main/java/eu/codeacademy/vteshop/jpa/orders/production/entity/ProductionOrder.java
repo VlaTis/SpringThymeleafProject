@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.jpa.orders.production.entity;
 
-import eu.codeacademy.vteshop.product.entity.Product;
+import eu.codeacademy.vteshop.jpa.product.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

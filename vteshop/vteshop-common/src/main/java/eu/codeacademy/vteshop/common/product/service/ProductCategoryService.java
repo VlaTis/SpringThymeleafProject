@@ -1,9 +1,9 @@
 package eu.codeacademy.vteshop.common.product.service;
 
 import eu.codeacademy.vteshop.common.product.dto.ProductCategoryDto;
-import eu.codeacademy.vteshop.product.entity.ProductCategory;
+import eu.codeacademy.vteshop.jpa.product.entity.ProductCategory;
+import eu.codeacademy.vteshop.jpa.product.repository.ProductCategoryRepository;
 import eu.codeacademy.vteshop.common.product.mapper.ProductCategoryMapper;
-import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

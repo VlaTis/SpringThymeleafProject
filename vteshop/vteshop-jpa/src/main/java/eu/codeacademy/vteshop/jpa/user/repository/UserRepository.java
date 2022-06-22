@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.jpa.user.repository;
 
-import eu.codeacademy.vteshop.user.entity.User;
+import eu.codeacademy.vteshop.jpa.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

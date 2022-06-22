@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.common.station.mapper;
 
-import eu.codeacademy.vteshop.operation.station.entity.OperationStation;
+import eu.codeacademy.vteshop.jpa.operation.station.entity.OperationStation;
 import eu.codeacademy.vteshop.common.station.dto.OperationStationDto;
 import org.springframework.stereotype.Component;
 

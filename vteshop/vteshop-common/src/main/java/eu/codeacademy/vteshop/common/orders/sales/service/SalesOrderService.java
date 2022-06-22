@@ -1,9 +1,9 @@
 package eu.codeacademy.vteshop.common.orders.sales.service;
 
 import eu.codeacademy.vteshop.common.orders.sales.dto.SalesOrderDto;
-import eu.codeacademy.vteshop.orders.sales.entity.SalesOrder;
+import eu.codeacademy.vteshop.jpa.orders.sales.entity.SalesOrder;
+import eu.codeacademy.vteshop.jpa.orders.sales.repository.SalesOrderRepository;
 import eu.codeacademy.vteshop.common.orders.sales.mapper.SalesOrderMapper;
-import eu.codeacademy.vteshop.orders.sales.repository.SalesOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,10 +1,10 @@
 package eu.codeacademy.vteshop.common.station.service;
 
-import eu.codeacademy.vteshop.operation.station.entity.OperationStation;
+import eu.codeacademy.vteshop.jpa.operation.station.entity.OperationStation;
+import eu.codeacademy.vteshop.jpa.operation.station.repository.OperationStationRepository;
+import eu.codeacademy.vteshop.jpa.operation.station.repository.OperationStationStatusRepository;
 import eu.codeacademy.vteshop.common.station.mapper.OperationStationMapper;
 import eu.codeacademy.vteshop.common.station.dto.OperationStationDto;
-import eu.codeacademy.vteshop.operation.station.repository.OperationStationRepository;
-import eu.codeacademy.vteshop.operation.station.repository.OperationStationStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

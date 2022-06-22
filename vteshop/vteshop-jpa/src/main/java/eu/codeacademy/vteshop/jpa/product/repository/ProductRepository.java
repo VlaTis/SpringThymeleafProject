@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.jpa.product.repository;
 
-import eu.codeacademy.vteshop.product.entity.Product;
+import eu.codeacademy.vteshop.jpa.product.entity.Product;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

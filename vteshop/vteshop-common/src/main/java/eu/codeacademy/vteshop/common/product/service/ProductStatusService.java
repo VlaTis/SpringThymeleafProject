@@ -2,8 +2,9 @@ package eu.codeacademy.vteshop.common.product.service;
 
 import eu.codeacademy.vteshop.common.product.mapper.ProductStatusMapper;
 import eu.codeacademy.vteshop.common.product.dto.ProductStatusDto;
-import eu.codeacademy.vteshop.product.entity.ProductStatus;
-import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
+import eu.codeacademy.vteshop.jpa.product.entity.ProductStatus;
+import eu.codeacademy.vteshop.jpa.product.repository.ProductStatusRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

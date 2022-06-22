@@ -2,8 +2,8 @@ package eu.codeacademy.vteshop.common.user.mapper;
 
 import eu.codeacademy.vteshop.common.user.dto.UserDto;
 import eu.codeacademy.vteshop.common.user.dto.UserRoleDto;
-import eu.codeacademy.vteshop.user.entity.Authority;
-import eu.codeacademy.vteshop.user.entity.User;
+import eu.codeacademy.vteshop.jpa.user.entity.Authority;
+import eu.codeacademy.vteshop.jpa.user.entity.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 

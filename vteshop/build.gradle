@@ -32,6 +32,10 @@ allprojects {
         annotationProcessor 'org.projectlombok:lombok'
     }
 
+    tasks.jar {
+        enabled = true
+    }
+
 }
 
 ext {

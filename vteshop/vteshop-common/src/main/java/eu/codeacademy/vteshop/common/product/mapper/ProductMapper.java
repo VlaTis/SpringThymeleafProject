@@ -1,7 +1,7 @@
 package eu.codeacademy.vteshop.common.product.mapper;
 
 import eu.codeacademy.vteshop.common.product.dto.ProductDto;
-import eu.codeacademy.vteshop.product.entity.Product;
+import eu.codeacademy.vteshop.jpa.product.entity.Product;
 import org.springframework.stereotype.Component;
 
 @Component

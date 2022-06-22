@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.jpa.product.entity;
 
-import eu.codeacademy.vteshop.operation.station.entity.OperationStation;
+import eu.codeacademy.vteshop.jpa.operation.station.entity.OperationStation;
 import lombok.*;
 
 import javax.persistence.*;

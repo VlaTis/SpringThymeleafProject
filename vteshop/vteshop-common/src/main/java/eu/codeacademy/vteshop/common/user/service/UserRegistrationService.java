@@ -1,10 +1,11 @@
 package eu.codeacademy.vteshop.common.user.service;
 
 import eu.codeacademy.vteshop.common.user.dto.UserDto;
-import eu.codeacademy.vteshop.user.entity.Authority;
-import eu.codeacademy.vteshop.user.entity.User;
-import eu.codeacademy.vteshop.user.repository.AuthorityRepository;
-import eu.codeacademy.vteshop.user.repository.UserRepository;
+import eu.codeacademy.vteshop.jpa.user.entity.Authority;
+import eu.codeacademy.vteshop.jpa.user.entity.User;
+import eu.codeacademy.vteshop.jpa.user.repository.AuthorityRepository;
+import eu.codeacademy.vteshop.jpa.user.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
