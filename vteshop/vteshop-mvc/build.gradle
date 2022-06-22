@@ -10,7 +10,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5:${thymeleafExtrasVersion}"
-
+    implementation "org.apache.httpcomponents:httpclient:${httpComponentsHttpClientVersion}"
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
     implementation "com.h2database:h2:${h2Version}"
     implementation "org.postgresql:postgresql:${postgresVersion}"
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
