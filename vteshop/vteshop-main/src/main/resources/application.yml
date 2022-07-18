@@ -32,6 +32,9 @@ spring:
     user:
       name: user@eshop.lt
       password: user
+  servlet:
+    multipart:
+      max-file-size: 5MB
 logging:
   level:
     eu:

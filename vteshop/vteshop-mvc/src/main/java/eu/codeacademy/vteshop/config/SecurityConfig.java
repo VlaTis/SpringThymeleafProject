@@ -27,20 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/public/**",
-                        "/",
-                        "/api/**",
+                .antMatchers("/public/**", "/", "/api/**",
                         "/swagger-ui/**",
                         "/swagger-resources/**",
+//                        "/v2/api-docs/**",  // if we want to use old swagger version
                         "/v3/api-docs/**"
-                        ).permitAll()
+                ).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .cors()
-                .and()
-                .csrf()
-                .disable()
                 .formLogin()
                 .permitAll()
                 .loginPage("/login-eshop")
@@ -54,8 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll();
-
-
     }
 
 
