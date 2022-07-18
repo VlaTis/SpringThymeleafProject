@@ -1,7 +1,8 @@
-
-
 dependencies {
     implementation project(":vteshop-common")
+    implementation project(':vteshop-jpa')
+
+
     implementation "io.springfox:springfox-boot-starter:${springFoxVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
