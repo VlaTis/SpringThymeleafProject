@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.api.controller;
+package eu.codeacademy.vteshop.api.controller.product;
 
 
 import eu.codeacademy.vteshop.common.product.dto.ProductDto;
@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
-@Api
+@Api(tags = "Product Controller")
 public class ProductApiController {
 
     private final ProductService productService;
