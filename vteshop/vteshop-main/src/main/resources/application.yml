@@ -1,11 +1,5 @@
-server:
-  servlet:
-    session:
-      tracking-modes: cookie
+
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   main:
     banner-mode: console
   datasource:
