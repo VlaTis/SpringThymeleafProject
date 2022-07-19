@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ApiExceptionHandlerAdvice {
 
-    @ExceptionHandler(FileSizeLimitExceededException.class)
-    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE)
+    @ExceptionHandler(FileSizeLimitExceededException.class) // throw exception file limit exceed
+    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE) // changing response status on this exception
     public ApiExceptionResponse handleFileToLargeException(FileSizeLimitExceededException ex) {
         return ApiExceptionResponse.builder()
                 .status(HttpStatus.PAYLOAD_TOO_LARGE.value())

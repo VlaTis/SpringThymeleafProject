@@ -1,10 +1,15 @@
 package eu.codeacademy.vteshop.api.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,9 +23,8 @@ public class FileService {
 
     public void saveFile(MultipartFile file) {
         createDirectory();
-
         try {
-            Path filePathWithFileName = fileLocation.resolve(file.getOriginalFilename());
+            Path filePathWithFileName = fileLocation.resolve(getUniqFileName(file));
             Files.copy(file.getInputStream(), filePathWithFileName , StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             log.error("Cannot create file", e);
@@ -45,5 +49,22 @@ public class FileService {
             e.printStackTrace();
         }
     }
+
+    public Resource getFile(String fileName) {
+        try {
+            InputStream inputStream = Files.newInputStream(fileLocation.resolve(fileName)); //fileLocation.resolve(fileName) - full path
+            return new InputStreamResource(inputStream);
+        } catch (IOException e) {
+            log.error("Cannot get/create file by name", e);
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public MediaType getFileMediaTypeByFileName(String fileName) {
+        return MediaType.valueOf(URLConnection.guessContentTypeFromName(fileName)) ;
+    }
 }
+
 
