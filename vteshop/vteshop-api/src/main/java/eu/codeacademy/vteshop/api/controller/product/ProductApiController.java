@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -57,6 +54,20 @@ public class ProductApiController {
                 .products(List.of(productService.getProductByUUID(uuid)))
                 .build();
     }
+
+
+    @DeleteMapping(path = "/{uuid}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully deleted"),
+            @ApiResponse(code = 401, message = "Need to log in"),
+            @ApiResponse(code = 403, message = "Unauthorised"),
+//            @ApiResponse(code = 500, message = "Product can not be deleted: it belongs to production order") //geriau negrazinti 500
+    })
+    public void deleteProduct(@PathVariable("uuid") UUID productId) {
+        productService.deleteProduct(productId);
+    }
+
+
 }
 
 

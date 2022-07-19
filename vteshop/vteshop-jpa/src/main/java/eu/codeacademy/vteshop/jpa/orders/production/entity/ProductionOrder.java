@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -27,6 +28,7 @@ public class ProductionOrder {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "production_order_status")
     private ProductionOrderStatus productionOrderStatus;
+
 
 
 }

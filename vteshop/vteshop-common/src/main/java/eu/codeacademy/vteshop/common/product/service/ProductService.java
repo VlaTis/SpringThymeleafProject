@@ -10,6 +10,7 @@ import eu.codeacademy.vteshop.common.product.mapper.ProductMapper;
 //import eu.codeacademy.vteshop.product.repository.ProductRepository;
 //import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
 import eu.codeacademy.vteshop.jpa.operation.station.repository.OperationStationRepository;
+import eu.codeacademy.vteshop.jpa.orders.production.repository.ProductionOrderRepository;
 import eu.codeacademy.vteshop.jpa.product.entity.Product;
 import eu.codeacademy.vteshop.jpa.product.repository.ProductCategoryRepository;
 import eu.codeacademy.vteshop.jpa.product.repository.ProductRepository;
@@ -34,6 +35,7 @@ public class ProductService {
     private final ProductCategoryRepository productCategoryRepository;
     private final ProductStatusRepository productStatusRepository;
     private final OperationStationRepository operationStationRepository;
+    private final ProductionOrderRepository orderRepository;
 
     @Transactional
     public void addProduct(ProductDto productDto) {
@@ -90,8 +92,13 @@ public class ProductService {
 
     @Transactional
     public void deleteProduct(UUID uuid) {
-        Optional<Product> product = productRepository.findByProductId(uuid);
-        product.ifPresent(value -> productRepository.deleteById(value.getId()));
+        if(orderRepository.findProductionOrderByProductId(uuid).isPresent()){
+            throw new RuntimeException("Not Allowed!!!"); //pasikurti savo exception
+        } else {
+            Optional<Product> product = productRepository.findByProductId(uuid);
+            product.ifPresent(value -> productRepository.deleteById(value.getId()));
+        }
+
     }
 
     @Transactional
