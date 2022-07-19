@@ -29,7 +29,8 @@ public class FileController {
     public ResponseEntity<Resource> getFileByName(@RequestParam String fileName) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=\"" + fileName + "\""); // add info to header
-        return ResponseEntity.ok()   //Response entity to expand response (add some features headers, status etc.)
+        return ResponseEntity.ok()
+                .headers(headers)//Response entity to expand response (add some features headers, status etc.)
                 .contentType(fileService.getFileMediaTypeByFileName(fileName))      //Content type for type of files
                 .body(fileService.getFile(fileName));
 

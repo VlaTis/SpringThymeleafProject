@@ -11,10 +11,13 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -34,9 +37,28 @@ public class ProductApiController {
             @ApiResponse(code = 401, message = "Reikalauja prisijungimo gaunant produktu sarasa"),
             @ApiResponse(code = 403, message = "Neturite reikalingu teisiu gauti produktu sarasa")
     })
-    public ProductResponse getProducts(){
+    public ProductResponse getProducts() {
         return ProductResponse.builder()
                 .products(productService.getProducts())
                 .build();
     }
+
+    @GetMapping(
+            path = "/{uuid}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @ApiOperation(value = "Get one product by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Kai sekmingai grazina produkta"),
+            @ApiResponse(code = 401, message = "Reikalauja prisijungimo gaunant produkta"),
+            @ApiResponse(code = 403, message = "Neturite reikalingu teisiu gauti produkta")
+    })
+    public ProductResponse getProducts(@PathVariable("uuid") UUID uuid) {
+        return ProductResponse.builder()
+                .products(List.of(productService.getProductByUUID(uuid)))
+                .build();
+    }
 }
+
+
+
+
