@@ -1,4 +1,5 @@
 rootProject.name = 'vteshop'
+
 include 'vteshop-main'
 include 'vteshop-api'
 include 'vteshop-common'

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ApiExceptionHandlerAdvice {
+
     @ExceptionHandler(FileSizeLimitExceededException.class)
     public ApiExceptionResponse handleFileToLargeException(FileSizeLimitExceededException ex) {
         return ApiExceptionResponse.builder()
