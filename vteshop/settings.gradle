@@ -1,6 +1,5 @@
 rootProject.name = 'vteshop'
 include 'vteshop-main'
-//include 'vteshop-mvc'
 include 'vteshop-api'
 include 'vteshop-common'
 include 'vteshop-jpa'
