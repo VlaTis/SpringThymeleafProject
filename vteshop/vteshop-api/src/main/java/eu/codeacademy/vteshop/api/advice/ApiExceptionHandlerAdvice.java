@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
+
 @RestControllerAdvice
 public class ApiExceptionHandlerAdvice {
 
@@ -17,6 +19,15 @@ public class ApiExceptionHandlerAdvice {
         return ApiExceptionResponse.builder()
                 .status(HttpStatus.PAYLOAD_TOO_LARGE.value())
                 .message(ex.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(SQLException.class) // throw exception file limit exceed
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE) // changing response status on this exception
+    public ApiExceptionResponse handleFileToLargeException(SQLException ex) {
+        return ApiExceptionResponse.builder()
+                .status(HttpStatus.NOT_ACCEPTABLE.value())
+                .message("Can not be deleted/updated---")
                 .build();
     }
 }
