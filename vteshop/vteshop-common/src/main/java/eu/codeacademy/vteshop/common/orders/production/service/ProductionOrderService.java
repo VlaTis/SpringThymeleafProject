@@ -38,7 +38,7 @@ public class ProductionOrderService {
     }
 
     @Transactional
-    public void updateProductionOrderStatus(String productionOrderDtoName, ProductionOrderStatusDto productionOrderStatusDto) {
+    public boolean updateProductionOrderStatus(String productionOrderDtoName, ProductionOrderStatusDto productionOrderStatusDto) {
         Optional<ProductionOrder> productionOrderOptional = productionOrderRepository.findProductionOrderByName(productionOrderDtoName);
 
 
@@ -52,7 +52,9 @@ public class ProductionOrderService {
                     .build();
 
             productionOrderRepository.save(productionOrder);
+            return true;
         }
+        return false;
     }
 
 

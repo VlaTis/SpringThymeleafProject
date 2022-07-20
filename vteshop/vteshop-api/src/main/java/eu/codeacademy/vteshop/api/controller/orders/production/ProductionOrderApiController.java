@@ -3,6 +3,7 @@ package eu.codeacademy.vteshop.api.controller.orders.production;
 
 import eu.codeacademy.vteshop.api.dto.ProductResponse;
 import eu.codeacademy.vteshop.common.orders.production.dto.ProductionOrderDto;
+import eu.codeacademy.vteshop.common.orders.production.dto.ProductionOrderStatusDto;
 import eu.codeacademy.vteshop.common.orders.production.service.ProductionOrderService;
 import eu.codeacademy.vteshop.common.product.dto.ProductDto;
 import io.swagger.annotations.Api;
@@ -62,6 +63,19 @@ public class ProductionOrderApiController {
         }
         return ResponseEntity.notFound().build();
     }
+
+//    @PutMapping
+//    @ApiOperation(
+//            value = "Update Prodcution order status",
+//            notes = "Update production order status"
+//    )
+//    public ResponseEntity<Void> updateOrderStatus(@Valid @RequestParam){
+//        if(productionOrderService.updateProductionOrderStatus(statusDto)){
+//            return ResponseEntity.status(HttpStatus.CREATED).build();
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+//
 
     @DeleteMapping(path = "/{orderName}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
