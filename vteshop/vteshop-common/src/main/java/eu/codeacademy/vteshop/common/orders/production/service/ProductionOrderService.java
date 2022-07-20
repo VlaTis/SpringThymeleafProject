@@ -86,6 +86,16 @@ public class ProductionOrderService {
     }
 
 
+    public List<ProductionOrderDto> getFilteredOrdersByStationName(String stationName) {
+        return productionOrderRepository.findAll().stream()
+                .filter(po -> Objects.equals(po.getProduct()
+                        .getOperationStation()
+                        .getName(), stationName))
+                .map(productionOrderMapper::mapTo)
+                .collect(Collectors.toList());
+    }
+
+
     public Page<ProductionOrderDto> getProductionOrdersPaginated(Pageable pageable) {
         return productionOrderRepository.findAll(pageable)
                 .map(productionOrderMapper::mapTo);
@@ -93,10 +103,10 @@ public class ProductionOrderService {
 
 
     @Transactional
-    public void updateOrder(ProductionOrderDto orderDto){
+    public boolean updateOrder(ProductionOrderDto orderDto) {
         Optional<ProductionOrder> orderOptional = productionOrderRepository.findProductionOrderByName(orderDto.getName());
 
-        if(orderOptional.isPresent()){
+        if (orderOptional.isPresent()) {
             ProductionOrder order = orderOptional.get().toBuilder()
                     .product(productRepository.findByProductId(orderDto.getProductUUID()).get())
                     .quantity(orderDto.getQuantity())
@@ -104,8 +114,9 @@ public class ProductionOrderService {
                     .build();
 
             productionOrderRepository.save(order);
+            return true;
         }
-
+        return false;
     }
 
     public Set<UUID> getOrderedProductsUUIDs() {
