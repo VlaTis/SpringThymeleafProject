@@ -56,7 +56,8 @@ public class ProductApiController {
     }
 
 
-    @DeleteMapping(path = "/{uuid}")
+    @DeleteMapping(path = "/{uuid}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully deleted"),
             @ApiResponse(code = 401, message = "Need to log in"),

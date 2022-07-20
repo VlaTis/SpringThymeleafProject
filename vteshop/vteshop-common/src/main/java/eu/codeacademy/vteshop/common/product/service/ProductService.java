@@ -3,18 +3,13 @@ package eu.codeacademy.vteshop.common.product.service;
 import eu.codeacademy.vteshop.common.product.dto.ProductDto;
 import eu.codeacademy.vteshop.common.product.exeption.ProductNotFoundException;
 import eu.codeacademy.vteshop.common.product.mapper.ProductMapper;
-
-//import eu.codeacademy.vteshop.operation.station.repository.OperationStationRepository;
-//import eu.codeacademy.vteshop.product.entity.Product;
-//import eu.codeacademy.vteshop.product.repository.ProductCategoryRepository;
-//import eu.codeacademy.vteshop.product.repository.ProductRepository;
-//import eu.codeacademy.vteshop.product.repository.ProductStatusRepository;
 import eu.codeacademy.vteshop.jpa.operation.station.repository.OperationStationRepository;
 import eu.codeacademy.vteshop.jpa.orders.production.repository.ProductionOrderRepository;
 import eu.codeacademy.vteshop.jpa.product.entity.Product;
 import eu.codeacademy.vteshop.jpa.product.repository.ProductCategoryRepository;
 import eu.codeacademy.vteshop.jpa.product.repository.ProductRepository;
 import eu.codeacademy.vteshop.jpa.product.repository.ProductStatusRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,7 +46,7 @@ public class ProductService {
                 .build());
     }
 
-    public Page<ProductDto> getProductsPaginated(Pageable pageable){
+    public Page<ProductDto> getProductsPaginated(Pageable pageable) {
         return productRepository.findAll(pageable)
                 .map(productMapper::mapTo);
     }
@@ -92,12 +87,9 @@ public class ProductService {
 
     @Transactional
     public void deleteProduct(UUID uuid) {
-        if(orderRepository.findProductionOrderByProductId(uuid).isPresent()){
-            throw new RuntimeException("Not Allowed!!!"); //pasikurti savo exception
-        } else {
-            Optional<Product> product = productRepository.findByProductId(uuid);
-            product.ifPresent(value -> productRepository.deleteById(value.getId()));
-        }
+        Optional<Product> product = productRepository.findByProductId(uuid);
+        product.ifPresent(value -> productRepository.deleteById(value.getId()));
+
 
     }
 
