@@ -29,7 +29,7 @@ public class OperationStationService {
     }
 
     @Transactional
-    public void updateOperationStationStatus(OperationStationDto operationStationDto){
+    public boolean updateOperationStationStatus(OperationStationDto operationStationDto){
         Optional<OperationStation> operationStationOptional = operationStationRepository.findOperationStationByName(operationStationDto.getName());
 
         if(operationStationOptional.isPresent()){
@@ -40,7 +40,10 @@ public class OperationStationService {
                     .build();
 
             operationStationRepository.save(operationStation);
+            return true;
         }
+
+        return false;
 
     }
 

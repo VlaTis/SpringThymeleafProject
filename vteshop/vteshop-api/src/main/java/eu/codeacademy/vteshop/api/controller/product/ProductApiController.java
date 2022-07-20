@@ -59,7 +59,7 @@ public class ProductApiController {
             @ApiResponse(code = 401, message = "Reikalauja prisijungimo gaunant produkta"),
             @ApiResponse(code = 403, message = "Neturite reikalingu teisiu gauti produkta")
     })
-    public ProductResponse getProducts(@PathVariable("uuid") UUID uuid) {
+    public ProductResponse getProductByUUID(@PathVariable("uuid") UUID uuid) {
         return ProductResponse.builder()
                 .products(List.of(productService.getProductByUUID(uuid)))
                 .build();
@@ -88,6 +88,14 @@ public class ProductApiController {
 
         return ResponseEntity.notFound().build();
     }
+    @PostMapping
+    @ApiOperation(value = "Create product", httpMethod = "POST")
+    public ResponseEntity<Void> createProduct(@Valid @RequestBody ProductDto productDto) {
+        productService.addProduct(productDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }
 
 
