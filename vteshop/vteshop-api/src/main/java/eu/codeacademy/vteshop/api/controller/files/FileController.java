@@ -1,5 +1,6 @@
 package eu.codeacademy.vteshop.api.controller.files;
 
+import eu.codeacademy.vteshop.api.dto.FileResponse;
 import eu.codeacademy.vteshop.api.service.FileService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/api/file/upload")
-    public void saveFile(@RequestParam MultipartFile file) {
-        fileService.saveFile(file);
+    public FileResponse saveFile(@RequestParam MultipartFile file) {
+       return fileService.saveFile(file);
 
     }
 

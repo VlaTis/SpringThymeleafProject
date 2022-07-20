@@ -1,10 +1,15 @@
 package eu.codeacademy.vteshop.api.service;
 
+import eu.codeacademy.vteshop.api.dto.FileResponse;
+import eu.codeacademy.vteshop.jpa.file.entity.File;
+import eu.codeacademy.vteshop.jpa.file.repository.FileRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,18 +23,38 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class FileService {
     private final Path fileLocation = Paths.get("./files").toAbsolutePath().normalize();
+    private final FileRepository fileRepository;
 
-    public void saveFile(MultipartFile file) {
+    @Transactional
+    public FileResponse saveFile(MultipartFile file) {
         createDirectory();
+
         try {
-            Path filePathWithFileName = fileLocation.resolve(getUniqFileName(file));
-            Files.copy(file.getInputStream(), filePathWithFileName , StandardCopyOption.REPLACE_EXISTING);
+            String[] splitFile = file.getOriginalFilename().split("\\.");
+
+            File savedFileInDb = fileRepository.save(
+                    File.builder()
+                            .fileName(splitFile[0])
+                            .fileExtension(splitFile[1])
+                            .size(file.getSize())
+                            .mediaType(file.getContentType())
+                            .build());
+
+            Path filePathWithFileName = fileLocation.resolve(savedFileInDb.getUniqFileName());
+            Files.copy(file.getInputStream(), filePathWithFileName, StandardCopyOption.REPLACE_EXISTING);
+
+            return FileResponse.builder()
+                    .originalFileName(savedFileInDb.getUniqFileName())
+                    .build();
         } catch (IOException e) {
             log.error("Cannot create file", e);
             e.printStackTrace();
         }
+
+        return null;
     }
 
     private String getUniqFileName(MultipartFile file) {
@@ -63,7 +88,7 @@ public class FileService {
     }
 
     public MediaType getFileMediaTypeByFileName(String fileName) {
-        return MediaType.valueOf(URLConnection.guessContentTypeFromName(fileName)) ;
+        return MediaType.valueOf(URLConnection.guessContentTypeFromName(fileName));
     }
 }
 

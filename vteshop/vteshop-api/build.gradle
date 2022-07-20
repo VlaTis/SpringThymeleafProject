@@ -1,5 +1,6 @@
 dependencies {
     implementation project(":vteshop-common")
+    implementation project(":vteshop-jpa")
 
 
 

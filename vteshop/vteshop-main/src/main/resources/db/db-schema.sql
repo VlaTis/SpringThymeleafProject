@@ -111,6 +111,18 @@ CREATE TABLE sales_order
     total_price DECIMAL(30, 2) NOT NUll
 );
 
+DROP TABLE IF EXISTS file;
+CREATE TABLE file
+(
+    id                BIGSERIAL PRIMARY KEY,
+    file_id           UUID           NOT NULL,
+    file_name         VARCHAR(100)   NOT NULL,
+    file_extension    VARCHAR(15)    NOT NULL,
+    media_type        VARCHAR(10)    NOT NULL,
+    size              BIGINT         NOT NULL,
+    timestamp         TIMESTAMP      DEFAULT current_timestamp
+);
+
 
 
 
