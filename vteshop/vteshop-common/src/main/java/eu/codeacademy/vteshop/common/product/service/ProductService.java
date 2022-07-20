@@ -66,7 +66,7 @@ public class ProductService {
 
 
     @Transactional
-    public void updateProduct(ProductDto productDto) {
+    public boolean updateProduct(ProductDto productDto) {
         Optional<Product> productOptional = productRepository.findByProductId(productDto.getProductId());
 
         if (productOptional.isPresent()) {
@@ -81,7 +81,9 @@ public class ProductService {
                     .build();
 
             productRepository.save(product);
+            return true;
         }
+        return false;
     }
 
 

@@ -9,9 +9,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -69,7 +72,17 @@ public class ProductApiController {
     }
 
 
+    @PutMapping
+    @ApiOperation(value = "Update product", httpMethod = "PUT")
+    public ResponseEntity<Void> updateProduct(@Valid @RequestBody ProductDto productDto) {
+        if (productService.updateProduct(productDto)) {
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
+
 
 
 
