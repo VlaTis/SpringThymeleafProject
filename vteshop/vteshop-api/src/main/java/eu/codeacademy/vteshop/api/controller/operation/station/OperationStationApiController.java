@@ -2,7 +2,9 @@ package eu.codeacademy.vteshop.api.controller.operation.station;
 
 
 import eu.codeacademy.vteshop.common.station.dto.OperationStationDto;
+import eu.codeacademy.vteshop.common.station.dto.OperationStationStatusDto;
 import eu.codeacademy.vteshop.common.station.service.OperationStationService;
+import eu.codeacademy.vteshop.common.station.service.OperationStationStatusService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -24,6 +26,7 @@ import java.util.List;
 public class OperationStationApiController {
 
     private final OperationStationService stationService;
+    private final OperationStationStatusService statusService;
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(
@@ -39,7 +42,16 @@ public class OperationStationApiController {
     }
 
 
-//
+    @GetMapping(
+            path = "/statuses",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiOperation(
+            value = "Get available statuses",
+            notes = "Get available statuses")
+
+    public List<OperationStationStatusDto> getStationStatuses() {
+        return statusService.getStationStatuses();
+    }
 
     @GetMapping(
             path = "/{station}",

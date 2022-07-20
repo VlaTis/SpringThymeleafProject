@@ -3,7 +3,9 @@ package eu.codeacademy.vteshop.api.controller.product;
 
 import eu.codeacademy.vteshop.api.dto.ProductResponse;
 import eu.codeacademy.vteshop.common.product.dto.ProductDto;
+import eu.codeacademy.vteshop.common.product.dto.ProductStatusDto;
 import eu.codeacademy.vteshop.common.product.service.ProductService;
+import eu.codeacademy.vteshop.common.product.service.ProductStatusService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -28,6 +30,7 @@ import java.util.UUID;
 public class ProductApiController {
 
     private final ProductService productService;
+    private final ProductStatusService statusService;
 
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -44,6 +47,18 @@ public class ProductApiController {
                 .products(productService.getProducts())
                 .build();
     }
+
+
+    @GetMapping(
+            path = "/statuses",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @ApiOperation(
+            value = "Get status list",
+            notes = "Available status")
+    public List<ProductStatusDto> getProductStatuses() {
+        return statusService.getProductStatuses();
+    }
+
 
     @GetMapping("/page")
     public Page<ProductDto> getProductsPaginated(@RequestParam("page") int page, @RequestParam("size") int size) {
