@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.api.user.dto;
+package eu.codeacademy.vteshop.security.jwt.dto;
 
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;

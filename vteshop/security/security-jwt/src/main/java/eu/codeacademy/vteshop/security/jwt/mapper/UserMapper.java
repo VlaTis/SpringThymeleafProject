@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.api.user.mapper;
+package eu.codeacademy.vteshop.security.jwt.mapper;
 
 import eu.codeacademy.vteshop.api.user.dto.UserDto;
 import eu.codeacademy.vteshop.api.user.dto.UserRoleDto;
