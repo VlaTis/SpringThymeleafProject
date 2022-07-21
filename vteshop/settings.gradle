@@ -4,4 +4,8 @@ include 'vteshop-main'
 include 'vteshop-api'
 include 'vteshop-common'
 include 'vteshop-jpa'
+include 'security'
+include 'security:security-jpa'
+include 'security:security-jwt'
+findProject(':security:security-jwt')?.name = 'security-jwt'
 

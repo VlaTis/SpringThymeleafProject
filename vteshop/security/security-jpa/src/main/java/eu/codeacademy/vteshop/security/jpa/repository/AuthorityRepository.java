@@ -1,4 +1,4 @@
-package eu.codeacademy.vteshop.jpa.user.repository;
+package eu.codeacademy.vteshop.security.jpa.repository;
 
 import eu.codeacademy.vteshop.jpa.user.entity.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
