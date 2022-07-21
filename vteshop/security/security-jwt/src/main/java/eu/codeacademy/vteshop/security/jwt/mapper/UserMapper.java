@@ -1,9 +1,10 @@
 package eu.codeacademy.vteshop.security.jwt.mapper;
 
-import eu.codeacademy.vteshop.api.user.dto.UserDto;
-import eu.codeacademy.vteshop.api.user.dto.UserRoleDto;
-import eu.codeacademy.vteshop.jpa.user.entity.Authority;
-import eu.codeacademy.vteshop.jpa.user.entity.User;
+
+import eu.codeacademy.vteshop.security.jpa.entity.Authority;
+import eu.codeacademy.vteshop.security.jpa.entity.User;
+import eu.codeacademy.vteshop.security.jwt.dto.UserDto;
+import eu.codeacademy.vteshop.security.jwt.dto.UserRoleDto;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
