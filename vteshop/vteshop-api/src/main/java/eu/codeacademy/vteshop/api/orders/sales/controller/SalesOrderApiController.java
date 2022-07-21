@@ -28,7 +28,7 @@ public class SalesOrderApiController {
 
     @PostMapping
     @ApiOperation(value = "Create order", httpMethod = "POST")
-    public ResponseEntity<Void> createProduct(@Valid @RequestBody SalesOrderDto salesOrderDto) {
+    public ResponseEntity<Void> createSalesOrder(@Valid @RequestBody SalesOrderDto salesOrderDto) {
         salesOrderService.addSalesOrder(salesOrderDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

@@ -1,9 +1,11 @@
 package eu.codeacademy.vteshop.api.product.controller;
 
 
+import eu.codeacademy.vteshop.api.product.dto.ProductCategoryDto;
 import eu.codeacademy.vteshop.api.product.dto.ProductResponse;
 import eu.codeacademy.vteshop.api.product.dto.ProductDto;
 import eu.codeacademy.vteshop.api.product.dto.ProductStatusDto;
+import eu.codeacademy.vteshop.api.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.api.product.service.ProductService;
 import eu.codeacademy.vteshop.api.product.service.ProductStatusService;
 import io.swagger.annotations.Api;
@@ -31,6 +33,8 @@ public class ProductApiController {
 
     private final ProductService productService;
     private final ProductStatusService statusService;
+
+    private final ProductCategoryService categoryService;
 
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -110,6 +114,21 @@ public class ProductApiController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("/categories")
+    @ApiOperation(value = "Get product categories list")
+    public List<ProductCategoryDto> getProductCategories() {
+        return categoryService.getProductCategories();
+    }
+
+    @PostMapping("/categories")
+    @ApiOperation(value = "Create new category", httpMethod = "POST")
+    public ResponseEntity<Void> createCategory(@Valid @RequestBody ProductCategoryDto categoryDto) {
+        categoryService.addProductCategory(categoryDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 }
 
