@@ -25,10 +25,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  security:
-    user:
-      name: user@eshop.lt
-      password: user
+
   servlet:
     multipart:
       max-file-size: 5MB
@@ -39,4 +36,7 @@ logging:
         vteshop:
           config: DEBUG
           filter: TRACE
-
+security:
+  jwt:
+    # validity time in minutes
+    validity-time: 30
