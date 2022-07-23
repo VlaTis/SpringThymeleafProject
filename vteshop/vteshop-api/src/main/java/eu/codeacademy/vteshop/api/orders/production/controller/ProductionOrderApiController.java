@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ public class ProductionOrderApiController {
     @ApiOperation(
             value = "Get all production orders",
             notes = "Production Orders")
+    @PreAuthorize("hasRole('ROLE_OPERATOR')")
     public List<ProductionOrderDto> getProductionOrders() {
         return productionOrderService.getAllProductionOrders();
     }
@@ -34,6 +36,7 @@ public class ProductionOrderApiController {
     @ApiOperation(
             value = "Get all production orders by station",
             notes = "Production Orders by station")
+    @PreAuthorize("hasRole('ROLE_OPERATOR')")
     public List<ProductionOrderDto> getProductionOrdersByStationName(@RequestParam String stationName) {
         return productionOrderService.getFilteredOrdersByStationName(stationName);
     }
@@ -41,16 +44,18 @@ public class ProductionOrderApiController {
 
     @PostMapping
     @ApiOperation(value = "Create order", httpMethod = "POST")
-    public ResponseEntity<Void> createProduct(@Valid @RequestBody ProductionOrderDto productionOrderDto) {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Void> createProductionOrder(@Valid @RequestBody ProductionOrderDto productionOrderDto) {
        productionOrderService.addProductionOrder(productionOrderDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping
     @ApiOperation(
-            value = "Update Prodcution order",
+            value = "Update Production order",
             notes = "Update production order"
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> updateOrder(@Valid @RequestBody ProductionOrderDto orderDto){
         if(productionOrderService.updateOrder(orderDto)){
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -74,7 +79,7 @@ public class ProductionOrderApiController {
     @DeleteMapping(path = "/{orderName}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
 
-    public void deleteProduct(@PathVariable("orderName") String orderName) {
+    public void deleteProductionOrder(@PathVariable("orderName") String orderName) {
         productionOrderService.deleteOrder(orderName);
     }
 

@@ -8,6 +8,7 @@ import eu.codeacademy.vteshop.api.product.dto.ProductStatusDto;
 import eu.codeacademy.vteshop.api.product.service.ProductCategoryService;
 import eu.codeacademy.vteshop.api.product.service.ProductService;
 import eu.codeacademy.vteshop.api.product.service.ProductStatusService;
+import eu.codeacademy.vteshop.common.OpenApi;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,6 +31,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
 @Api(tags = "Product Controller")
+@OpenApi
 public class ProductApiController {
 
     private final ProductService productService;
@@ -59,6 +62,7 @@ public class ProductApiController {
     @ApiOperation(
             value = "Get status list",
             notes = "Available status")
+    @PreAuthorize("hasRole('ROLE_OPERATOR')")
     public List<ProductStatusDto> getProductStatuses() {
         return statusService.getProductStatuses();
     }
@@ -93,6 +97,7 @@ public class ProductApiController {
             @ApiResponse(code = 403, message = "Unauthorised"),
 //            @ApiResponse(code = 500, message = "Product can not be deleted: it belongs to production order") //geriau negrazinti 500
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteProduct(@PathVariable("uuid") UUID productId) {
         productService.deleteProduct(productId);
     }
@@ -100,6 +105,7 @@ public class ProductApiController {
 
     @PutMapping
     @ApiOperation(value = "Update product", httpMethod = "PUT")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> updateProduct(@Valid @RequestBody ProductDto productDto) {
         if (productService.updateProduct(productDto)) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -109,6 +115,7 @@ public class ProductApiController {
     }
     @PostMapping
     @ApiOperation(value = "Create product", httpMethod = "POST")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> createProduct(@Valid @RequestBody ProductDto productDto) {
         productService.addProduct(productDto);
 
@@ -123,6 +130,7 @@ public class ProductApiController {
 
     @PostMapping("/categories")
     @ApiOperation(value = "Create new category", httpMethod = "POST")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> createCategory(@Valid @RequestBody ProductCategoryDto categoryDto) {
         categoryService.addProductCategory(categoryDto);
 

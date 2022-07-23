@@ -33,4 +33,9 @@ public class UserRegistrationService {
                 .authorities(authorities)
                 .build());
     }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//    }
+
 }
