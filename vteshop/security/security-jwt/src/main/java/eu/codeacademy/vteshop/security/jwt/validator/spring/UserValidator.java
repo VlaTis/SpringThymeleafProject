@@ -1,6 +1,7 @@
 package eu.codeacademy.vteshop.security.jwt.validator.spring;
 
-import eu.codeacademy.vteshop.api.user.dto.UserDto;
+
+import eu.codeacademy.vteshop.security.jwt.dto.UserDto;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

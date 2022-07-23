@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.security.jwt.dto;
 
-import eu.codeacademy.vteshop.api.validator.FieldsStringCompare;
+
 
 import eu.codeacademy.vteshop.security.jwt.validator.FieldsStringCompare;
 import lombok.Builder;
