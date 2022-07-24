@@ -24,7 +24,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/api/file/upload")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public FileResponse saveFile(@RequestParam MultipartFile file) {
        return fileService.saveFile(file);
 

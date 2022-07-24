@@ -1,6 +1,6 @@
 package eu.codeacademy.vteshop.security.jwt.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import eu.codeacademy.vteshop.security.jwt.filter.JwtAuthorizationFilter;
 import eu.codeacademy.vteshop.security.jwt.service.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +51,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/login",
-                        "/api/products/**"
+                        "/api/products/**",
+                        "/api/file/upload",
+                        "/api/file/download"
 
                 ).permitAll()
                 .antMatchers(

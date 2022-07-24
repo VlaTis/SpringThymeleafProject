@@ -15,6 +15,7 @@ public class ProductMapper {
                 .quantity(product.getQuantityInStock())
                 .price(product.getPrice())
                 .description(product.getDescription())
+                .pictureFileName(product.getPictureFileName())
                 .productCategoryName(product.getProductCategory().getName())
                 .productStatusName(product.getProductStatus().getName())
                 .operationStationName(product.getOperationStation().getName())

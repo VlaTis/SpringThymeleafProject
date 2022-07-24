@@ -25,6 +25,8 @@ public class ProductDto {
     )
     private String name;
 
+    private String pictureFileName;
+
     @PositiveOrZero
     @Max(value = 1000)
     @NotNull

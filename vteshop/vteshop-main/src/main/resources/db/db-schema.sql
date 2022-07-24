@@ -43,6 +43,7 @@ CREATE TABLE product
     quantity_in_stock INT            NOT NULL,
     price             DECIMAL(20, 2) NOT NULL,
     description       VARCHAR(500) DEFAULT NULL,
+    picture_file_name varchar(240) DEFAULT NULL,
     operation_station BIGINT references operation_station (id),
     product_status    BIGINT references product_status (id),
     product_category  BIGINT references product_category (id),

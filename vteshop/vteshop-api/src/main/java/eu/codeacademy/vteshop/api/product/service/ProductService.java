@@ -40,6 +40,7 @@ public class ProductService {
                 .price(productDto.getPrice())
                 .quantityInStock(productDto.getQuantity())
                 .description(productDto.getDescription())
+                .pictureFileName(productDto.getPictureFileName())
                 .productCategory(productCategoryRepository.findProductCategoryByName(productDto.getProductCategoryName()).get())
                 .operationStation(operationStationRepository.findOperationStationByName(productDto.getOperationStationName()).get())
                 .productStatus(productStatusRepository.findProductStatusByName(productDto.getProductStatusName()).get())

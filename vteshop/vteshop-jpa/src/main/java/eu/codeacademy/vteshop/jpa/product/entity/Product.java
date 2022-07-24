@@ -29,6 +29,8 @@ public class Product {
 
     private String description;
 
+    private String pictureFileName;
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="product_status")
     private ProductStatus productStatus;
