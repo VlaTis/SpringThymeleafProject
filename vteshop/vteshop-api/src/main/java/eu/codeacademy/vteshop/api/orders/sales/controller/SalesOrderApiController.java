@@ -3,6 +3,7 @@ package eu.codeacademy.vteshop.api.orders.sales.controller;
 
 import eu.codeacademy.vteshop.api.orders.sales.dto.SalesOrderDto;
 import eu.codeacademy.vteshop.api.orders.sales.service.SalesOrderService;
+import eu.codeacademy.vteshop.common.OpenApi;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/sales_orders")
 @Api(tags = "Sales Orders Controller")
+@OpenApi
 public class SalesOrderApiController {
 
     private final SalesOrderService salesOrderService;

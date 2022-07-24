@@ -3,6 +3,7 @@ package eu.codeacademy.vteshop.api.orders.production.controller;
 
 import eu.codeacademy.vteshop.api.orders.production.dto.ProductionOrderDto;
 import eu.codeacademy.vteshop.api.orders.production.service.ProductionOrderService;
+import eu.codeacademy.vteshop.common.OpenApi;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/production_orders")
 @Api(tags = "Production Orders Controller")
+@OpenApi
 public class ProductionOrderApiController {
 
     private final ProductionOrderService productionOrderService;

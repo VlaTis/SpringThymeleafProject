@@ -1,5 +1,6 @@
 package eu.codeacademy.vteshop.security.jwt.controller;
 
+import eu.codeacademy.vteshop.common.OpenApi;
 import eu.codeacademy.vteshop.security.jwt.dto.LoginRequest;
 import eu.codeacademy.vteshop.security.jwt.dto.LoginResponse;
 import eu.codeacademy.vteshop.security.jwt.dto.UserRoleDto;
@@ -26,7 +27,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/login")
-
+@OpenApi
 @RequiredArgsConstructor
 public class LoginController {
 

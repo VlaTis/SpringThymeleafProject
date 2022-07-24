@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final ObjectMapper objectMapper;
+
     private final UserDetailsService userDetailsService;
     private final JwtProvider jwtProvider;
 
@@ -51,11 +51,14 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/login",
-                        "/products"
+                        "/api/products/**"
+
                 ).permitAll()
                 .antMatchers(
+
                         "/swagger-ui/**",
                         "/swagger-resources/**",
+                        "api/products",
                         "/v2/api-docs/**",  // if we want to use old swagger version
                         "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
